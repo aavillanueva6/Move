@@ -1,0 +1,24 @@
+{
+  "name": "move",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aavillanueva6/Move.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aavillanueva6/Move/issues"
+  },
+  "homepage": "https://github.com/aavillanueva6/Move#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
