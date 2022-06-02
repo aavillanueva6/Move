@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Move</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    
+      <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <h1>Move </h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+        
+        {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">logout</button>
+       
+        {{/if}}
+      </nav>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+  </div>
+    
+    <main class="container container-fluid mt-5">
+     
+      {{{body}}}
+    </main>
+    <footer>
+      
+    </footer>
+  </div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="row">
+ 
+<script src="./js/login.js"></script>
+
+      
+  
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
