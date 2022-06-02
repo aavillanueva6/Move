@@ -37,9 +37,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // commented out until routes are defined
 // app.use(routes);
 
-// this is only in for development of socket.io.  Need to remove from server.js prior to deployment
+// TODO: this is only in for development of socket.io.  Need to remove from server.js prior to deployment
 app.get('/socketTest', (req, res) => {
-  res.sendFile(__dirname + '/dist/index.html');
+  res.sendFile(__dirname + '/public/dev/');
 });
 
 // socket.io
@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
   socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
+    console.log(`message: ${msg} from: ${socketID}`);
     io.emit('chat message', msg);
   });
 });

@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="socket-container" id="messageContainer">
+      <ul id="messages"></ul>
+    </div>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+
+      var messages = document.getElementById('messages');
+      var form = document.getElementById('form');
+      var input = document.getElementById('input');
+
+      const userID = socket.id;
+
+      function updateScroll() {
+        const messageContainer = document.getElementById('messageContainer');
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit('chat message', input.value);
+          input.value = '';
+        }
+      });
+
+      socket.on('chat message', async function (msg) {
+        const socketID = socket.id;
+        // how to get the userID off of the socketID.  I can create a userID on the server side, and store it in an object along with the socketID, but need to be able to access on client side
+        var row = document.createElement('li');
+        var message = document.createElement('span');
+        message.classList.add('socket-message');
+        var user = document.createElement('span');
+        user.classList.add('socket-user');
+        message.textContent = msg;
+        user.textContent = `(${socketID})`;
+        messages.appendChild(row);
+        row.appendChild(message);
+        row.appendChild(user);
+        updateScroll();
+      });
+    </script>
+  </body>
+</html>
