@@ -34,8 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// commented out until routes are defined
-// app.use(routes);
+app.use(routes);
 
 // TODO: this is only in for development of socket.io.  Need to remove from server.js prior to deployment
 app.get('/socketTest', (req, res) => {
