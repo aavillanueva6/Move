@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"><div class="row">
   <div class="col-auto">
-    <h2>Hello, {{name}}. Select your favorite outddor activity! </h2>
+    <h2>Hello, {{name}}. Select your favorite outdoor activity! </h2>
   </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,6 +24,10 @@
     </form>
   </div>
 </nav>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+ 
 <div class="row mt-4">
   <div class="col-md-6">
      <form class="form new-post-form">
@@ -36,11 +40,18 @@
         <textarea class="form-input" id="post-desc" name="post-desc"></textarea>
       </div>
       <div class="form-group">
-    
-        <button type="submit" class="btn btn-primary">Create Post</button>
+         <button type="submit" class="btn btn-primary">Create Post</button>
       </div>
     </form>
   </div>
+  </div>
+</div>
+
+
+
+
+    
+       
 
   {{#if posts.length}}
   <div class="col-md-6 project-list">
