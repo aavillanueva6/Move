@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Category, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// renders homepage
+// renders homepage, limits posts to 20
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
