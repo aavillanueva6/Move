@@ -10,12 +10,25 @@
 </head>
 
 <body>
-    
-      <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <h1>Move </h1>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+  <div class="m-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">
+                
+                "./public/assets/icon.png"
+            </a>
+            <h2>Move</h2>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse"
+                <div class="navbar-nav ms-auto">
+                    {{!-- <a href="#" class="nav-item nav-link">Login</a> --}}
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
         
         {{#if logged_in}}
         <a href="/profile">profile</a> |
