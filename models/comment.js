@@ -12,7 +12,7 @@ Comments.init(
             autoIncrement: true,
         },
         content: {
-            type: DataTypes.TEXT('tiny'),
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         date_created: {
