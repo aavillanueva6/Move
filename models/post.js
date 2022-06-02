@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Post extends Model { }
 
-Comments.init(
+Post.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -29,6 +29,13 @@ Comments.init(
             references: {
                 model: 'user',
                 key: 'id',
+            },
+        },
+        category_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'category',
+                key: "id",
             },
         },
     },
