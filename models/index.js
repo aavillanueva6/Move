@@ -41,4 +41,4 @@ Post.belongsTo(Category, {
 
 
 
-module.exports = { User, Post, Comment };
+module.exports = { User, Post, Comment, Category };
