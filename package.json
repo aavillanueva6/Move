@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds/seed.js",
+    "lint": "npx eslint **/*.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.20.0"
+    "sequelize": "^6.20.0",
+    "socket.io": "^4.5.1"
   }
 }

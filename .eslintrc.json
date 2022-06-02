@@ -9,6 +9,19 @@
     "es2018": true
   },
   "rules": {
+    "object-curly-newline": [
+      "warn",
+      {
+        "ObjectPattern": {
+          "multiline": true
+        },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": {
+          "multiline": true,
+          "minProperties": 3
+        }
+      }
+    ],
     "no-undef-init": "error",
     "no-duplicate-case": "error",
     "no-empty": "error",
@@ -29,10 +42,21 @@
     "no-use-before-define": "error",
     "no-redeclare": "error",
     "brace-style": "error",
-    "indent": ["error", 2],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
     "radix": "off"
   },
-  "extends": ["prettier"]
+  "extends": [
+    "prettier"
+  ]
 }
