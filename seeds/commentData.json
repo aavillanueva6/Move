@@ -1,0 +1,32 @@
+[
+    {
+        "content": "I'd love to join in on a game of soccer. Where and when?",
+        "user_id": 1,
+        "post_id": 2
+    },
+    {
+        "content": "Thanks for the heads up! Going up there this weekend!",
+        "user_id": 2,
+        "post_id": 1
+    },
+    {
+        "content": "Idk, I've loved longboarding there in the past. Some parts are a tad bumpy, but on the whole the trail is a charm",
+        "user_id": 4,
+        "post_id": 6
+    },
+    {
+        "content": "I know the place you are talking about! I love heading over there as well",
+        "user_id": 3,
+        "post_id": 4
+    },
+    {
+        "content": "Another place that you might also like is the trail out on Mercer Island",
+        "user_id": 5,
+        "post_id": 3
+    },
+    {
+        "content": "Sad to hear, though all of the Mt Tiger trails are iffy on their views when it comes to fog. Have you done the other two?",
+        "user_id": 6,
+        "post_id": 5
+    }
+]
