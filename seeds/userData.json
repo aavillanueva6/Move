@@ -1,1 +1,37 @@
-[]
+[
+    {
+        "username": "BozJavascript",
+        "email": "bozny@gmail.com",
+        "password": "angelsb109"
+    },
+    {
+        "username": "CodeBleak",
+        "email": "marshlent@outlook.com",
+        "password": "passivepass09"
+    },
+    {
+        "username": "DatumData",
+        "email": "datum.smith@gmail.com",
+        "password": "workpass254"
+    },
+    {
+        "username": "JavascriptGodzilla",
+        "email": "topnerd@gmail.com",
+        "password": "1TopNerd"
+    },
+    {
+        "username": "DigyCode",
+        "email": "d.igy@outlook.com",
+        "password": "outdoors35"
+    },
+    {
+        "username": "CodeBeat",
+        "email": "codyB12@gmail.com",
+        "password": "password12345"
+    },
+    {
+        "username": "CodeSk8r",
+        "email": "sky.ra8@gmail.com",
+        "password": "password12345"
+    }
+]
