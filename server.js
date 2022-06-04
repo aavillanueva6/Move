@@ -40,36 +40,45 @@ app.use(routes);
 app.get('/socketTest', (req, res) => {
   res.sendFile(__dirname + '/public/dev/');
 });
+// TODO: remove the above lines when ready to deploy
 
 // socket.io
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
+const createAnonUser = require('./public/js/randomName');
 
 const users = [];
 io.on('connection', (socket) => {
-  // socket.on('user_join', (data) => {
-  const userID = Math.random();
+  console.log('a user connected');
+  // TODO: change this to reference logged in user.  or if no logged in user, display some anon / random name
+  let userID = '';
+  // 0 is in as a placeholder that evaluates to false, this should be changed to something that will check if the user is logged in (need to figure out how to tie it to the session.loggedIn)
+  if (0) {
+    // set userID to logged in user's name
+  } else {
+    userID = createAnonUser();
+  }
   const socketID = socket.id;
   const newUser = {
     socketID,
     userID,
   };
   users.push(newUser);
+  console.log(`user list`);
   console.log(users);
-  // });
-  console.log('a user connected');
+
   socket.broadcast.emit('hi');
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
   socket.on('chat message', (msg) => {
-    console.log(`message: ${msg} from: ${socketID}`);
-    io.emit('chat message', msg);
+    console.log(`message: ${msg} from: ${userID}`);
+    io.emit('chat message', msg, userID);
   });
 });
 
-// sequelize.sync({ force: false }).then(() => {
-server.listen(PORT, () => console.log(`Now listening at localhost:${PORT}`));
-// });
+sequelize.sync({ force: false }).then(() => {
+  server.listen(PORT, () => console.log(`Now listening at localhost:${PORT}`));
+});
