@@ -86,21 +86,20 @@ router.get('/post/:id', async (req, res) => {
 // renders profile page, sends all posts created by current user
 router.get('/profile', withAuth, async (req, res) => {
     try {
-        const userData = await User.findByPk(req.session.user_id, {
-            attributes: { exclude: ['password'] },
-            include: [{ model: Post }],
+        const postData = await Post.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                }
+            ],
+            where: { user_id: req.session.user_id }
         });
 
-        const user = userData.get({ plain: true });
-
-        // const postData = await Post.findAll({
-        //     where: { user_id: req.session.user_id }
-        // });
-
-        // const posts = postData.map((post) => post.get({ plain: true }));
+        const posts = postData.map((post) => post.get({ plain: true }));
 
         res.render('profile', {
-            user,
+            posts,
             logged_in: true
         });
     } catch (err) {
