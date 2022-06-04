@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { update } = require('../../../tech-blog/models/User');
 const { Post, Comment } = require('../../models');
 
 // create new post
