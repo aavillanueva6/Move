@@ -25,7 +25,7 @@ router.post('/', async (req, res) =>
 
 // log in an existing user
 // checks that user exists, validates password
-router.post('.login', async (req, res) =>
+router.post('/login', async (req, res) =>
 {
   try
   {
