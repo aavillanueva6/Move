@@ -54,6 +54,11 @@ router.get('/category/:id', async (req, res) => {
     }
 });
 
+// renders create post page
+router.get('/post/new', withAuth, async (req, res) => {
+    res.render('create-post');
+});
+
 
 // renders single post
 router.get('/post/:id', async (req, res) => {
