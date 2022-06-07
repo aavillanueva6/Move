@@ -59,14 +59,65 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 const createAnonUser = require('./public/js/randomName');
 
+io.use(async (socket,next)=>{
+
+  const sessionID = socket.handshake.auth.sessionID;
+  console.log('sessionID', sessionID)
+  socket.sessionID = 'sessionIDFromServer'
+  socket.userID = 'userIDFromServer';
+  socket.username = 'paul';
+  next()
+})
+
 const users = [];
-io.on('connection', (socket) => {
+io.on('connection', async(socket) => {
   console.log('a user connected');
-  // TODO: change this to reference logged in user.  or if no logged in user, display some anon / random name
+
+  const sessionCookie = socket.handshake.headers.cookie;
+  console.log("Session Cookie ", sessionCookie);
+  const actual = sessionCookie.split('=')[1].split('.')[0].split('');
+  actual.splice(0,4);
+  const SessionCookieID = actual.join('');
+  console.log(SessionCookieID);
+  const sessionQueryData = await sequelize.query(`SELECT * FROM sessions WHERE sid='${SessionCookieID}'`, (err,result)=>{
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(result);
+  }
+});
+console.log(sessionQueryData);
+
+const cookieJsonData = sessionQueryData[0][0].data;
+parsedCookieData = JSON.parse(cookieJsonData);
+
+const logged_in = parsedCookieData.logged_in;
+
+const loggedInUser = parsedCookieData.user_id;
+let loggedInUserName = '';
+if (logged_in){
+  const userQueryData = await sequelize.query(`SELECT * FROM user WHERE id=${loggedInUser}`, (err,result)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+    }
+});
+
+loggedInUserName = userQueryData[0][0].username;
+};
+
+  socket.emit("session", {
+    sessionID: socket.sessionID,
+    userID: socket.userID,
+
+  });
+
   let userID = '';
-  // 0 is in as a placeholder that evaluates to false, this should be changed to something that will check if the user is logged in (need to figure out how to tie it to the session.loggedIn)
-  if (0) {
+
+  if (logged_in) {
     // set userID to logged in user's name
+    userID = loggedInUserName
   } else {
     userID = createAnonUser();
   }

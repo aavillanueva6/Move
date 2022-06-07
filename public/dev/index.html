@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Socket.IO chat</title>
@@ -13,9 +14,20 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const messageContainer = document.getElementById('messageContainer');
+      
       if (messageContainer) {
-        console.log(document.location.pathname)
+        // connect to socket
         const socket = io();
+
+        
+        socket.on("session", ({ sessionID, userID, username }) => {
+          // attach the session ID to the next reconnection attempts
+          socket.auth = { sessionID };
+
+          // save the ID of the user
+          socket.userID = userID;
+          
+});
 
         const socketMessages = document.getElementById('socketMessages');
         const socketForm = document.getElementById('socketForm');
@@ -59,7 +71,6 @@
           if (thisPage === sentPage){
 
             const socketID = socket.id;
-            // how to get the userID off of the socketID.  I can create a userID on the server side, and store it in an object along with the socketID, but need to be able to access on client side
             var row = document.createElement('li');
             var message = document.createElement('span');
             message.classList.add('socket-message');
