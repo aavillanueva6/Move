@@ -3,8 +3,10 @@ const { User, Category, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // renders homepage, limits posts to 20
-router.get('/', async (req, res) => {
-    try {
+router.get('/', async (req, res) =>
+{
+    try
+    {
         const postData = await Post.findAll({
             limit: 20,
             include: [
@@ -21,14 +23,17 @@ router.get('/', async (req, res) => {
             posts,
             logged_in: req.session.logged_in
         });
-    } catch (err) {
+    } catch (err)
+    {
         res.status(500).json(err);
     }
 });
 
 // renders page with posts filtered by categories
-router.get('/category/:id', async (req, res) => {
-    try {
+router.get('/category/:id', async (req, res) =>
+{
+    try
+    {
         const postData = await Post.findAll({
             where: { category_id: req.params.id },
             include: [
@@ -49,20 +54,24 @@ router.get('/category/:id', async (req, res) => {
             posts,
             logged_in: req.session.logged_in
         });
-    } catch (err) {
+    } catch (err)
+    {
         res.status(500).json(err);
     }
 });
 
 // renders create post page
-router.get('/post/new', withAuth, async (req, res) => {
+router.get('/post/new', withAuth, async (req, res) =>
+{
     res.render('create-post');
 });
 
 
 // renders single post
-router.get('/post/:id', async (req, res) => {
-    try {
+router.get('/post/:id', async (req, res) =>
+{
+    try
+    {
         const postData = await Post.findByPk(req.params.id, {
             include: [
                 {
@@ -83,14 +92,17 @@ router.get('/post/:id', async (req, res) => {
             post,
             logged_in: req.session.logged_in
         });
-    } catch (err) {
+    } catch (err)
+    {
         res.status(500).json(err);
     }
 });
 
 // renders profile page, sends all posts created by current user
-router.get('/profile', withAuth, async (req, res) => {
-    try {
+router.get('/profile', withAuth, async (req, res) =>
+{
+    try
+    {
         const postData = await Post.findAll({
             include: [
                 {
@@ -107,14 +119,17 @@ router.get('/profile', withAuth, async (req, res) => {
             posts,
             logged_in: true
         });
-    } catch (err) {
+    } catch (err)
+    {
         res.status(500).json(err);
     }
 });
 
 // renders login page
-router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
+router.get('/login', (req, res) =>
+{
+    if (req.session.logged_in)
+    {
         res.redirect('/profile');
         return;
     }
@@ -122,8 +137,10 @@ router.get('/login', (req, res) => {
 });
 
 // renders signup page
-router.get('/signup', (req, res) => {
-    if (req.session.logged_in) {
+router.get('/signup', (req, res) =>
+{
+    if (req.session.logged_in)
+    {
         res.redirect('/profile');
         return;
     }
