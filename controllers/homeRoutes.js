@@ -54,12 +54,6 @@ router.get('/category/:id', async (req, res) => {
     }
 });
 
-// renders create post page
-router.get('/post/new', withAuth, async (req, res) => {
-    res.render('create-post');
-});
-
-
 // renders single post
 router.get('/post/:id', async (req, res) => {
     try {
@@ -68,6 +62,10 @@ router.get('/post/:id', async (req, res) => {
                 {
                     model: User,
                     attributes: ['username']
+                },
+                {
+                    model: Category,
+                    attributes: ['name']
                 },
                 {
                     model: Comment,
@@ -80,6 +78,34 @@ router.get('/post/:id', async (req, res) => {
 
         // TODO: render page name
         res.render('post', {
+            post,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// renders create post page
+router.get('/post/new', withAuth, async (req, res) => {
+    res.render('create-post');
+});
+
+// renders edit post page
+router.get('/post/:id/edit', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include : [
+                {
+                    model: Category,
+                    attributes: ['name']
+                }
+            ]
+        }); 
+
+        const post = postData.get({ plain: true });
+
+        res.render('edit-post', {
             post,
             logged_in: req.session.logged_in
         });
