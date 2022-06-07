@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Socket.IO chat</title>
@@ -14,29 +15,15 @@
     <script>
       const messageContainer = document.getElementById('messageContainer');
       
-      function getCookie (name) {
-        const allCookies = document.cookie;
-        console.log(allCookies)
-        var cookies = document.cookie.split(';');
-        for(var i=0 ; i < cookies.length ; ++i) {
-          var pair = cookies[i].trim().split('=');
-          if(pair[0] == name){
-            return pair[1];
-          }
-        }
-        return null;
-      };
       if (messageContainer) {
-        console.log(document.location.pathname)
-        const thisCookie = getCookie('connect.sid')
-        console.log(thisCookie)
         // connect to socket
         const socket = io();
+
+        
         socket.on("session", ({ sessionID, userID, username }) => {
           // attach the session ID to the next reconnection attempts
           socket.auth = { sessionID };
 
-          console.log(username)          
           // save the ID of the user
           socket.userID = userID;
           
@@ -54,10 +41,6 @@
 
         socketForm.addEventListener('submit', function (e) {
           e.preventDefault();
-        //   const allCookies = document.cookie;
-        // console.log(allCookies)
-        //   const thisCookie = getCookie('connect.sid')
-        // console.log(thisCookie)
           if (socketText.value) {
             const path = document.location.pathname;
             let sentPage = '';
@@ -68,7 +51,6 @@
             }
             console.log('sentPage ' + sentPage);
 
-            // socket.emit('session')
             socket.emit('chat message', socketText.value, sentPage);
             socketText.value = '';
           }
@@ -89,7 +71,6 @@
           if (thisPage === sentPage){
 
             const socketID = socket.id;
-            // how to get the userID off of the socketID.  I can create a userID on the server side, and store it in an object along with the socketID, but need to be able to access on client side
             var row = document.createElement('li');
             var message = document.createElement('span');
             message.classList.add('socket-message');
