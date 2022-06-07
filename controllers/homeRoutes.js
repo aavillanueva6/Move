@@ -19,7 +19,7 @@ router.get('/', async (req, res) =>
 
         const posts = postData.map((post) => post.get({ plain: true }));
 
-        res.render('profile', {
+        res.render('homepage', {
             posts,
             logged_in: req.session.logged_in
         });
@@ -50,7 +50,7 @@ router.get('/category/:id', async (req, res) =>
         const posts = postData.map((post) => post.get({ plain: true }));
 
         // TODO: render page name
-        res.render('profile', {
+        res.render('category', {
             posts,
             logged_in: req.session.logged_in
         });
@@ -61,7 +61,8 @@ router.get('/category/:id', async (req, res) =>
 });
 
 // renders create post page
-router.get('/post/new', withAuth, async (req, res) => {
+router.get('/post/new', withAuth, async (req, res) =>
+{
     res.render('create-post');
 });
 
@@ -87,7 +88,7 @@ router.get('/post/:id', async (req, res) =>
         const post = postData.get({ plain: true });
 
         // TODO: render page name
-        res.render('profile', {
+        res.render('post', {
             post,
             logged_in: req.session.logged_in
         });
@@ -107,17 +108,12 @@ router.get('/profile', withAuth, async (req, res) =>
                 {
                     model: User,
                     attributes: ['username']
-                },
-                {
-                    model: Category,
-                    attributes: ['name']
                 }
             ],
             where: { user_id: req.session.user_id }
         });
 
         const posts = postData.map((post) => post.get({ plain: true }));
-        console.log(posts);
 
         res.render('profile', {
             posts,
@@ -125,7 +121,6 @@ router.get('/profile', withAuth, async (req, res) =>
         });
     } catch (err)
     {
-        console.log(err);
         res.status(500).json(err);
     }
 });
