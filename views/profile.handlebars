@@ -14,10 +14,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+  <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+    <ul class='navbar-nav mr-auto'>
+      <li class='nav-item active'>
+        <a class='nav-link' href='#'>Home
+          <span class='sr-only'>(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -47,8 +48,24 @@
         </form>
       </div>
 
+      <div class='row mt-4'>
+        <div class='col-md-6'>
+          <form class='form new-post-form'>
+            <div class='form-group'>
+              <label for='post-name'>Post Title:</label>
+              <input class='form-input' type='text' id='post-name' name='post-name' />
+            </div>
+            <div class='form-group'>
+              <label for='post-desc'>Post Contents:</label>
+              <textarea class='form-input' id='post-desc' name='post-desc'></textarea>
+            </div>
+            <div class='form-group'>
+              <button type='submit' class='btn btn-primary'>Create Post</button>
+            </div>
+          </form>
+        </div>
 
-      <div style="
+        <div style="
     height: 150px;
     width: 500px;
     border: 1px solid #ccc;
@@ -56,36 +73,34 @@
     overflow: auto;
   ">
 
-        <table id="messages"></table>
-      </div>
-      <form id="form" action="">
-        <input id="input" autocomplete="off" /><button>Send</button>
-      </form>
-    </div>
-  </div>
-
-
-
-
-
-
-
-  {{#if posts.length}}
-  <div class="col-md-6 project-list">
-    <h3>Recent posts:</h3>
-
-    {{#each posts as |post|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+          <table id="messages"></table>
+        </div>
+        <form id="form" action="">
+          <input id="input" autocomplete="off" /><button>Send</button>
+        </form>
       </div>
     </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
 
-<script src="./js/profile.js"></script>
+
+
+
+
+
+
+    {{#if posts.length}}
+    <div class='col-md-6 project-list'>
+      <h3>Recent posts:</h3>
+
+      {{#each posts as |post|}}
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+
+    <script src="./js/profile.js"></script>
