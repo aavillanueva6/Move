@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const datetime = require('node-datetime');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -62,6 +63,10 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 const createAnonUser = require('./public/js/randomName');
+
+// storage of messages to persist over page load
+const { InMemoryMessageStore } = require("./utils/messageStore");
+const messageStore = new InMemoryMessageStore();
 
 io.use(async (socket,next)=>{
 
@@ -142,6 +147,9 @@ loggedInUserName = userQueryData[0][0].username;
   socket.on('chat message', (msg, sentPage) => {
     console.log(`message: ${msg} from: ${userID}`);
     io.emit('chat message', msg, userID, sentPage);
+    currentTime = datetime.create().now()
+    messageStore.saveMessage({msg,sentPage,userID,currentTime});
+    console.log(messageStore)
   });
 });
 
