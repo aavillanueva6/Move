@@ -13,9 +13,31 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const messageContainer = document.getElementById('messageContainer');
+      
+      function getCookie (name) {
+        const allCookies = document.cookie;
+        console.log(allCookies)
+        var cookies = document.cookie.split(';');
+        for(var i=0 ; i < cookies.length ; ++i) {
+        var pair = cookies[i].trim().split('=');
+        if(pair[0] == name)
+            return pair[1];
+          }
+           return null;
+        };
       if (messageContainer) {
         console.log(document.location.pathname)
+        const thisCookie = getCookie('connect.sid')
+        console.log(thisCookie)
         const socket = io();
+        socket.on("session", ({ sessionID, userID, username }) => {
+          // attach the session ID to the next reconnection attempts
+          socket.auth = { sessionID };
+          // store it in the localStorage
+console.log(username)          // save the ID of the user
+          socket.userID = userID;
+          
+});
 
         const socketMessages = document.getElementById('socketMessages');
         const socketForm = document.getElementById('socketForm');
@@ -29,6 +51,10 @@
 
         socketForm.addEventListener('submit', function (e) {
           e.preventDefault();
+        //   const allCookies = document.cookie;
+        // console.log(allCookies)
+        //   const thisCookie = getCookie('connect.sid')
+        // console.log(thisCookie)
           if (socketText.value) {
             const path = document.location.pathname;
             let sentPage = '';
@@ -39,6 +65,7 @@
             }
             console.log('sentPage ' + sentPage);
 
+            // socket.emit('session')
             socket.emit('chat message', socketText.value, sentPage);
             socketText.value = '';
           }

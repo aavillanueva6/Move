@@ -59,14 +59,32 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 const createAnonUser = require('./public/js/randomName');
 
+io.use((socket,next)=>{
+  console.log("test1 ", socket)
+  const sessionID = socket.handshake.auth.sessionID;
+  console.log('sessionID', sessionID)
+  socket.sessionID = 'sessionIDFromServer'
+  socket.userID = 'userIDFromServer';
+  socket.username = 'paul';
+  next()
+})
+
 const users = [];
 io.on('connection', (socket) => {
   console.log('a user connected');
+  socket.emit("session", {
+    sessionID: socket.sessionID,
+    userID: socket.userID,
+  });
+  // console.log(io)
+  // console.dir(io.eio, { depth: null });
   // TODO: change this to reference logged in user.  or if no logged in user, display some anon / random name
   let userID = '';
-  // 0 is in as a placeholder that evaluates to false, this should be changed to something that will check if the user is logged in (need to figure out how to tie it to the session.loggedIn)
-  if (0) {
+  const isLoggedIn = true
+  // 0 is in as a placeholder that evaluates to false, this should be changed to something that will check if the user is logged in (need to figure out how to tie it to the session.logged_in)
+  if (isLoggedIn) {
     // set userID to logged in user's name
+    const socketIOUser = 'john'
   } else {
     userID = createAnonUser();
   }
