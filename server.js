@@ -40,6 +40,16 @@ app.use(routes);
 app.get('/socketTest', (req, res) => {
   res.sendFile(__dirname + '/public/dev/');
 });
+app.get('/socketTest/test2', (req, res) => {
+  res.sendFile(__dirname + '/public/dev/');
+});
+app.get('/test3/socketTest', (req, res) => {
+  res.sendFile(__dirname + '/public/dev/');
+});
+// the following route was added to test messaging at the home page.  In order to run this test, "app.use(routes)" should be commented out above.
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/public/dev/');
+// });
 // TODO: remove the above lines when ready to deploy
 
 // socket.io
@@ -73,9 +83,9 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
-  socket.on('chat message', (msg) => {
+  socket.on('chat message', (msg, sentPage) => {
     console.log(`message: ${msg} from: ${userID}`);
-    io.emit('chat message', msg, userID);
+    io.emit('chat message', msg, userID, sentPage);
   });
 });
 

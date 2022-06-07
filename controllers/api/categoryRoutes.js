@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
 
         const categories = categoryData.map((category) => category.get({ plain: true }));
         res.status(200).json(categories);
-    } catch (err) {}
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 // gets posts of a certain category?
