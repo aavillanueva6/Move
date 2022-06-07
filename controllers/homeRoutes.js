@@ -87,6 +87,12 @@ router.get('/post/:id', async (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                }
+            ],
             where: { user_id: req.session.user_id }
         });
 

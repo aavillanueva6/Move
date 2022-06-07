@@ -4,7 +4,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif;
 }
-#form {
+#socketForm {
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
   display: flex;
@@ -13,17 +13,17 @@ body {
   box-sizing: border-box;
   backdrop-filter: blur(10px);
 }
-#input {
+#socketText {
   border: none;
   padding: 0 1rem;
   flex-grow: 1;
   border-radius: 2rem;
   margin: 0.25rem;
 }
-#input:focus {
+#socketText:focus {
   outline: none;
 }
-#form > button {
+#socketForm > button {
   background: #333;
   border: none;
   padding: 0 1rem;
@@ -33,17 +33,17 @@ body {
   color: #fff;
 }
 
-#messages {
+#socketMessages {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-#messages > li {
+#socketMessages > li {
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
 }
-#messages > li:nth-child(odd) {
+#socketMessages > li:nth-child(odd) {
   background: #efefef;
 }
 .socket-message {
