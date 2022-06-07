@@ -5,20 +5,21 @@
   </head>
   <body>
     <div class="socket-container" id="messageContainer">
-      <ul id="messages"></ul>
+      <ul id="socketMessages"></ul>
     </div>
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
+    <form id="socketForm" action="">
+      <input id="socketText" autocomplete="off" /><button>Send</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const messageContainer = document.getElementById('messageContainer');
       if (messageContainer) {
-        var socket = io();
+        console.log(document.location.pathname)
+        const socket = io();
 
-        var messages = document.getElementById('messages');
-        var form = document.getElementById('form');
-        var input = document.getElementById('input');
+        const socketMessages = document.getElementById('socketMessages');
+        const socketForm = document.getElementById('socketForm');
+        const socketText = document.getElementById('socketText');
 
         const userID = socket.id;
 
@@ -26,28 +27,51 @@
           messageContainer.scrollTop = messageContainer.scrollHeight;
         }
 
-        form.addEventListener('submit', function (e) {
+        socketForm.addEventListener('submit', function (e) {
           e.preventDefault();
-          if (input.value) {
-            socket.emit('chat message', input.value);
-            input.value = '';
+          if (socketText.value) {
+            const path = document.location.pathname;
+            let sentPage = '';
+            if (path === '/'){
+              sentPage = 'home';
+            } else {
+              sentPage = path.split('/')[1];
+            }
+            console.log('sentPage ' + sentPage);
+
+            socket.emit('chat message', socketText.value, sentPage);
+            socketText.value = '';
           }
         });
 
-        socket.on('chat message', async function (msg, userID) {
-          const socketID = socket.id;
-          // how to get the userID off of the socketID.  I can create a userID on the server side, and store it in an object along with the socketID, but need to be able to access on client side
-          var row = document.createElement('li');
-          var message = document.createElement('span');
-          message.classList.add('socket-message');
-          var user = document.createElement('span');
-          user.classList.add('socket-user');
-          message.textContent = msg;
-          user.textContent = `(${userID})`;
-          messages.appendChild(row);
-          row.appendChild(message);
-          row.appendChild(user);
-          updateScroll();
+        socket.on('chat message', async function (msg, userID, sentPage) {
+          const path = document.location.pathname;
+          const pathArr = path.split('/');
+          let thisPage = '';
+          if (path === '/'){
+            thisPage = 'home';
+          } else {
+            thisPage = path.split('/')[1];
+          }
+          console.log('thisPage ' + thisPage);
+          console.log('sentPage (in rec): ' + sentPage)
+
+          if (thisPage === sentPage){
+
+            const socketID = socket.id;
+            // how to get the userID off of the socketID.  I can create a userID on the server side, and store it in an object along with the socketID, but need to be able to access on client side
+            var row = document.createElement('li');
+            var message = document.createElement('span');
+            message.classList.add('socket-message');
+            var user = document.createElement('span');
+            user.classList.add('socket-user');
+            message.textContent = msg;
+            user.textContent = `(${userID})`;
+            socketMessages.appendChild(row);
+            row.appendChild(message);
+            row.appendChild(user);
+            updateScroll();
+          }
         });
       }
     </script>
