@@ -1,0 +1,4 @@
+const categoryPosts = async (event) =>
+{
+
+};
