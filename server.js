@@ -20,7 +20,7 @@ const hour = 1000*60*60
 const sess = {
   secret: process.env.DB_SECRET,
   cookie: {
-    // maxAge:hour*12,
+    maxAge:hour*24,
   },
   resave: false,
   saveUninitialized: true,
