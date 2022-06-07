@@ -14,9 +14,13 @@ const PORT = process.env.PORT || 3001;
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
+const hour = 1000*60*60
+
 const sess = {
   secret: process.env.DB_SECRET,
-  cookie: {},
+  cookie: {
+    // maxAge:hour*12,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -86,9 +90,10 @@ io.on('connection', async(socket) => {
     console.log(result);
   }
 });
-console.log(sessionQueryData);
+// console.log('session Query Data: ',sessionQueryData);
 
 const cookieJsonData = sessionQueryData[0][0].data;
+
 parsedCookieData = JSON.parse(cookieJsonData);
 
 const logged_in = parsedCookieData.logged_in;
