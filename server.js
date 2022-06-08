@@ -67,7 +67,7 @@ const createAnonUser = require('./public/js/randomName');
 // storage of messages to persist over page load
 const { InMemoryMessageStore } = require('./utils/messageStore');
 const messageStore = new InMemoryMessageStore();
-const { Message } = require('./models/index');
+const { Message, User } = require('./models/index');
 const { Op } = require('sequelize');
 
 io.use(async (socket, next) => {
@@ -83,6 +83,31 @@ const users = [];
 io.on('connection', async (socket) => {
   console.log('a user connected');
 
+  const dbMessagesData = await Message.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ['username'],
+      },
+    ],
+    raw: true,
+    nest: true,
+  });
+
+  if (dbMessagesData) {
+    dbMessagesData.forEach((element) => {
+      if (!element.user.username) {
+        element.user.username = createAnonUser();
+      }
+      const msg = element.message_body;
+      const userID = element.user.username;
+      const sentPage = element.sent_page;
+      socket.emit('chat message', msg, userID, sentPage);
+    });
+    console.log(dbMessagesData);
+
+    dbMessagesData.forEach;
+  }
   const sessionCookie = socket.handshake.headers.cookie;
   console.log('Session Cookie ', sessionCookie);
   const actual = sessionCookie.split('=')[1].split('.')[0].split('');
