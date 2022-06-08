@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <div class="row">
   <div class="col-auto">
-    <h2>Hello, {{posts.user.username}}. Select your favorite outdoor activity! </h2>
+    <h2>Hello, {{username}} Select your favorite outdoor activity! </h2>
   </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Hiking</a>
-  <a class="navbar-brand" href="#">Biking</a>
-  <a class="navbar-brand" href="#">Skateboarding</a>
-  <a class="navbar-brand" href="#">Golfing</a>
+  {{#each categories as |category|}}
+  <a class="navbar-brand" href="#">{{category.name}}</a>
+  {{/each}}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -17,8 +16,7 @@
   <div class='collapse navbar-collapse' id='navbarSupportedContent'>
     <ul class='navbar-nav mr-auto'>
       <li class='nav-item active'>
-        <a class='nav-link' href='#'>Home
-          <span class='sr-only'>(current)</span></a>
+
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -94,6 +92,7 @@
           <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
         </div>
       </div>
+      {{/each}}
       {{/if}}
     </div>
 
