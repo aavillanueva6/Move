@@ -18,6 +18,17 @@ function moveSocket(io, sequelize, datetime) {
   io.on('connection', async (socket) => {
     console.log('a user connected');
 
+    const connectionTime = datetime.create().now();
+    const expirationHours = 0.1; // set this to the number of hours before the messages are deleted from the db
+    const expirationTime = connectionTime - 1000 * 60 * 60 * expirationHours;
+    const deletedMessages = Message.destroy({
+      where: {
+        date_created: {
+          [Op.lt]: expirationTime,
+        },
+      },
+    });
+
     const dbMessagesData = await Message.findAll({
       include: [
         {
@@ -119,16 +130,6 @@ function moveSocket(io, sequelize, datetime) {
         sent_page: sentPage,
         user_id: loggedInUser,
         date_created: currentTime,
-      });
-      const expirationHours = 0.1; // set this to the number of hours before the messages are deleted from the db
-      const expirationTime = currentTime - 1000 * 60 * 60 * expirationHours;
-      // console.log(currentTime, expirationTime);
-      const deletedMessages = Message.destroy({
-        where: {
-          date_created: {
-            [Op.lt]: expirationTime,
-          },
-        },
       });
     });
   });
