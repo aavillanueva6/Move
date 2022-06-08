@@ -1,8 +1,6 @@
 const createAnonUser = require('../public/js/randomName');
 
 // storage of messages to persist over page load
-const { InMemoryMessageStore } = require('../utils/messageStore');
-const messageStore = new InMemoryMessageStore();
 const { Message, User } = require('../models/index');
 const { Op } = require('sequelize');
 
@@ -116,8 +114,6 @@ function moveSocket(io, sequelize, datetime) {
       console.log(`message: ${msg} from: ${userID}`);
       io.emit('chat message', msg, userID, sentPage);
       currentTime = datetime.create().now();
-      messageStore.saveMessage({ msg, sentPage, userID, currentTime });
-      console.log(messageStore);
       const messageData = Message.create({
         message_body: msg,
         sent_page: sentPage,
