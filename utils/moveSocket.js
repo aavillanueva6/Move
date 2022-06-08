@@ -5,18 +5,19 @@ const { Message, User } = require('../models/index');
 const { Op } = require('sequelize');
 
 function moveSocket(io, sequelize, datetime) {
-  io.use(async (socket, next) => {
-    const sessionID = socket.handshake.auth.sessionID;
-    console.log('sessionID', sessionID);
-    socket.sessionID = 'sessionIDFromServer';
-    socket.userID = 'userIDFromServer';
-    socket.username = 'paul';
-    next();
-  });
-
-  const users = [];
   io.on('connection', async (socket) => {
     console.log('a user connected');
+
+    const connectionTime = datetime.create().now();
+    const expirationHours = 0.1; // set this to the number of hours before the messages are deleted from the db
+    const expirationTime = connectionTime - 1000 * 60 * 60 * expirationHours;
+    const deletedMessages = Message.destroy({
+      where: {
+        date_created: {
+          [Op.lt]: expirationTime,
+        },
+      },
+    });
 
     const dbMessagesData = await Message.findAll({
       include: [
@@ -39,16 +40,13 @@ function moveSocket(io, sequelize, datetime) {
         const sentPage = element.sent_page;
         socket.emit('chat message', msg, userID, sentPage);
       });
-      console.log(dbMessagesData);
 
       dbMessagesData.forEach;
     }
     const sessionCookie = socket.handshake.headers.cookie;
-    console.log('Session Cookie ', sessionCookie);
     const actual = sessionCookie.split('=')[1].split('.')[0].split('');
     actual.splice(0, 4);
     const SessionCookieID = actual.join('');
-    console.log(SessionCookieID);
     const sessionQueryData = await sequelize.query(
       `SELECT * FROM sessions WHERE sid='${SessionCookieID}'`,
       (err, result) => {
@@ -59,7 +57,6 @@ function moveSocket(io, sequelize, datetime) {
         }
       }
     );
-    // console.log('session Query Data: ',sessionQueryData);
 
     const cookieJsonData = sessionQueryData[0][0].data;
 
@@ -102,9 +99,6 @@ function moveSocket(io, sequelize, datetime) {
       socketID,
       userID,
     };
-    users.push(newUser);
-    console.log(`user list`);
-    console.log(users);
 
     socket.broadcast.emit('hi');
     socket.on('disconnect', () => {
@@ -119,16 +113,6 @@ function moveSocket(io, sequelize, datetime) {
         sent_page: sentPage,
         user_id: loggedInUser,
         date_created: currentTime,
-      });
-      const expirationHours = 0.1; // set this to the number of hours before the messages are deleted from the db
-      const expirationTime = currentTime - 1000 * 60 * 60 * expirationHours;
-      // console.log(currentTime, expirationTime);
-      const deletedMessages = Message.destroy({
-        where: {
-          date_created: {
-            [Op.lt]: expirationTime,
-          },
-        },
       });
     });
   });
