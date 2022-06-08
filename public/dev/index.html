@@ -14,20 +14,18 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const messageContainer = document.getElementById('messageContainer');
-      
+
       if (messageContainer) {
         // connect to socket
         const socket = io();
 
-        
-        socket.on("session", ({ sessionID, userID, username }) => {
+        socket.on('session', ({ sessionID, userID, username }) => {
           // attach the session ID to the next reconnection attempts
           socket.auth = { sessionID };
 
           // save the ID of the user
           socket.userID = userID;
-          
-});
+        });
 
         const socketMessages = document.getElementById('socketMessages');
         const socketForm = document.getElementById('socketForm');
@@ -44,7 +42,7 @@
           if (socketText.value) {
             const path = document.location.pathname;
             let sentPage = '';
-            if (path === '/'){
+            if (path === '/') {
               sentPage = 'home';
             } else {
               sentPage = path.split('/')[1];
@@ -60,16 +58,15 @@
           const path = document.location.pathname;
           const pathArr = path.split('/');
           let thisPage = '';
-          if (path === '/'){
+          if (path === '/') {
             thisPage = 'home';
           } else {
             thisPage = path.split('/')[1];
           }
           console.log('thisPage ' + thisPage);
-          console.log('sentPage (in rec): ' + sentPage)
+          console.log('sentPage (in rec): ' + sentPage);
 
-          if (thisPage === sentPage){
-
+          if (thisPage === sentPage) {
             const socketID = socket.id;
             var row = document.createElement('li');
             var message = document.createElement('span');
