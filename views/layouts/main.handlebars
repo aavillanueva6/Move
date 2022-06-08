@@ -5,58 +5,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Move</title>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#"> 
-    <img src="./assets/move.png" width="35px" class="d-inline-block align-top" alt="move icon" > <a class="navbar-brand" href="/"> move</a>
-  </a>
-</nav>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="./assets/move.png" width="35px" class="d-inline-block align-top" alt="move icon"> <a
+        class="navbar-brand" href="/">Move</a>
+    </a>
+  </nav>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-
-    
-
-
-        
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-       
-        {{/if}}
-      </nav>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    </div>
-  </div>
-    
-    <main class="container container-fluid mt-5">
-     
-      {{{body}}}
-      
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<div class="row">
- 
-
-
-      
-  
 
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+  <a href="/profile">profile</a> |
+  <button class="no-button" id="logout">logout</button>
 
-  
+  {{/if}}
+  </nav>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+  </div>
+  </div>
+
+  <main class="container container-fluid mt-5">
+
+    {{{body}}}
+
+  </main>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <div class="row">
+
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+
+
 </body>
 
 </html>
