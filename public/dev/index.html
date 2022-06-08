@@ -47,7 +47,7 @@
             } else {
               sentPage = path.split('/')[1];
             }
-            console.log('sentPage ' + sentPage);
+            // console.log('sentPage ' + sentPage);
 
             socket.emit('chat message', socketText.value, sentPage);
             socketText.value = '';
@@ -63,8 +63,8 @@
           } else {
             thisPage = path.split('/')[1];
           }
-          console.log('thisPage ' + thisPage);
-          console.log('sentPage (in rec): ' + sentPage);
+          // console.log('thisPage ' + thisPage);
+          // console.log('sentPage (in rec): ' + sentPage);
 
           if (thisPage === sentPage) {
             const socketID = socket.id;
