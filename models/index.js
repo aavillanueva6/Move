@@ -13,14 +13,14 @@ Post.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
-User.hasMany(Message, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL',
-});
+// User.hasMany(Message, {
+//     foreignKey: 'user_id',
+//     onDelete: 'SET NULL',
+// });
 
-Message.belongsTo(User, {
-    foreignKey: 'user_id',
-});
+// Message.belongsTo(User, {
+//     foreignKey: 'user_id',
+// });
 
 User.hasMany(Comment, {
     foreignKey: 'user_id',
