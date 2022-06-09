@@ -3,6 +3,7 @@ const { User, Category, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // renders homepage, limits posts to 20
+
 router.get('/', async (req, res) =>
 {
     try
@@ -60,7 +61,14 @@ router.get('/category/:id', async (req, res) =>
     }
 });
 
+  // renders create post page
+router.get('/post/new', withAuth, async (req, res) =>
+{
+    res.render('create-post');
+});
+  
 // renders single post
+
 router.get('/post/:id', async (req, res) =>
 {
     try
@@ -95,11 +103,6 @@ router.get('/post/:id', async (req, res) =>
     }
 });
 
-// renders create post page
-router.get('/post/new', withAuth, async (req, res) =>
-{
-    res.render('create-post');
-});
 
 // renders edit post page
 router.get('/post/:id/edit', withAuth, async (req, res) =>
@@ -187,3 +190,4 @@ router.get('/signup', (req, res) =>
 })
 
 module.exports = router;
+

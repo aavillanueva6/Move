@@ -3,51 +3,45 @@ const { User } = require('../../models');
 
 // create a new user
 // passed username, email, and password, creates user
-router.post('/', async (req, res) =>
-{
-  try
-  {
+router.post('/', async (req, res) => {
+  try {
     const userData = await User.create(req.body);
 
-    req.session.save(() =>
-    {
+    req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       req.session.username = userData.username;
 
       res.status(200).json(userData);
     });
-  }
-  catch (err)
-  {
+  } catch (err) {
     res.status(400).json(err);
   }
 });
 
 // log in an existing user
 // checks that user exists, validates password
-router.post('/login', async (req, res) =>
-{
-  try
-  {
+router.post('/login', async (req, res) => {
+  try {
     const userData = await User.findOne({ where: { email: req.body.email } });
 
-    if (!userData)
-    {
-      res.status(404).json({ message: 'Incorrect email or password, please try again' });
+    if (!userData) {
+      res
+        .status(404)
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
     const validPassword = await userData.checkPassword(req.body.password);
 
-    if (!validPassword)
-    {
-      res.status(400).json({ message: 'Incorrect email or password, please try again' });
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    req.session.save(() =>
-    {
+    req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       req.session.username = userData.username;
@@ -61,17 +55,12 @@ router.post('/login', async (req, res) =>
 });
 
 // log out current user, destroys session
-router.post('/logout', (req, res) =>
-{
-  if (req.session.logged_in)
-  {
-    req.session.destroy(() =>
-    {
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
       res.status(204).end();
     });
-  }
-  else
-  {
+  } else {
     res.status(404).end();
   }
 });
