@@ -4,15 +4,16 @@
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Move</title>
+    <link rel="icon" type="image/x-icon" href="/./assets/move.png">
     <link
       rel='stylesheet'
       href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
     />
     <link rel='stylesheet' href='./css/style.css' />
   </head>
-  <body>
-    <nav class='navbar navbar-light bg-light'>
-      <a class='navbar-brand' href='#'>
+  <body >
+    <nav class='navbar' style="background-color: #FFB611;">
+      <a class='navbar-brand' href='/'>
         {{!-- Navbar icon --}}
         <img
           src='/./assets/move.png'
@@ -21,20 +22,22 @@
           alt='move icon'
           href='/'
         />
+
+         <a class='navbar-brand' href='/'> move</a>
+      </a>
         {{!-- If a user is not logged in then render login and signup links in the navbar --}}
         {{#unless logged_in}}
-        <a href='/login'>login</a>
-        <a href='/signup'>signup</a>
+        <a class='navbar-brand' href='/login'>login</a>
+        <a class='navbar-brand' href='/signup'>signup</a>
         {{/unless}}
         {{!-- If a user is logged in then render profile and logout links in the navbar --}}
         {{#if logged_in}}
-      <a href='/profile'>profile</a>
-      <button class='no-button' id='logout'>logout</button>
+      <a class='navbar-brand' href='/profile'>profile</a>
+      <a class='navbar-brand' id='logout'>logout</a>
       <script src='/js/logout.js'></script>
     {{/if}}
     {{!-- "move" text that links back to the hompage --}}
-        <a class='navbar-brand' href='/'> move</a>
-      </a>
+       
       </nav>
     </div>
     <div class='collapse navbar-collapse' id='navbarNav'>
@@ -49,5 +52,78 @@
     <script
       src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
     ></script>
+    {{!-- Socket script --}}
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const messageContainer = document.getElementById('messageContainer');
+
+      if (messageContainer) {
+        // connect to socket
+        const socket = io();
+
+        socket.on('session', ({ sessionID, userID, username }) => {
+          // attach the session ID to the next reconnection attempts
+          socket.auth = { sessionID };
+
+          // save the ID of the user
+          socket.userID = userID;
+        });
+
+        const socketMessages = document.getElementById('socketMessages');
+        const socketForm = document.getElementById('socketForm');
+        const socketText = document.getElementById('socketText');
+
+        const userID = socket.id;
+
+        function updateScroll() {
+          messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+
+        socketForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (socketText.value) {
+            const path = document.location.pathname;
+            let sentPage = '';
+            if (path === '/') {
+              sentPage = 'home';
+            } else {
+              sentPage = path.split('/')[1];
+            }
+            // console.log('sentPage ' + sentPage);
+
+            socket.emit('chat message', socketText.value, sentPage);
+            socketText.value = '';
+          }
+        });
+
+        socket.on('chat message', async function (msg, userID, sentPage) {
+          const path = document.location.pathname;
+          const pathArr = path.split('/');
+          let thisPage = '';
+          if (path === '/') {
+            thisPage = 'home';
+          } else {
+            thisPage = path.split('/')[1];
+          }
+          // console.log('thisPage ' + thisPage);
+          // console.log('sentPage (in rec): ' + sentPage);
+
+          if (thisPage === sentPage) {
+            const socketID = socket.id;
+            var row = document.createElement('li');
+            var message = document.createElement('span');
+            message.classList.add('socket-message');
+            var user = document.createElement('span');
+            user.classList.add('socket-user');
+            message.textContent = msg;
+            user.textContent = `(${userID})`;
+            socketMessages.appendChild(row);
+            row.appendChild(message);
+            row.appendChild(user);
+            updateScroll();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
