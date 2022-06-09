@@ -10,16 +10,26 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
+<<<<<<< HEAD
           attributes: ['username'],
         },
       ],
+=======
+          attributes: ['username']
+        }
+      ]
+>>>>>>> a83a11e (adding assets)
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
     res.render('homepage', {
       posts,
+<<<<<<< HEAD
       logged_in: req.session.logged_in,
+=======
+      logged_in: req.session.logged_in
+>>>>>>> a83a11e (adding assets)
     });
   } catch (err) {
     res.status(500).json(err);
@@ -34,12 +44,21 @@ router.get('/category/:id', async (req, res) => {
       include: [
         {
           model: User,
+<<<<<<< HEAD
           attributes: ['username'],
         },
         {
           model: Category,
         },
       ],
+=======
+          attributes: ['username']
+        },
+        {
+          model: Category
+        }
+      ]
+>>>>>>> a83a11e (adding assets)
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
@@ -47,7 +66,43 @@ router.get('/category/:id', async (req, res) => {
     // TODO: render page name
     res.render('category', {
       posts,
+<<<<<<< HEAD
       logged_in: req.session.logged_in,
+=======
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// renders single post
+router.get('/post/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Category,
+          attributes: ['name']
+        },
+        {
+          model: Comment,
+          include: [User]
+        }
+      ]
+    });
+
+    const post = postData.get({ plain: true });
+
+    // TODO: render page name
+    res.render('post', {
+      post,
+      logged_in: req.session.logged_in
+>>>>>>> a83a11e (adding assets)
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,6 +110,7 @@ router.get('/category/:id', async (req, res) => {
 });
 
 // renders create post page
+<<<<<<< HEAD
 router.get('/post/new', async (req, res) => {
   try {
     const categoryData = await Category.findAll();
@@ -107,6 +163,10 @@ router.get('/post/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+=======
+router.get('/post/new', withAuth, async (req, res) => {
+  res.render('create-post');
+>>>>>>> a83a11e (adding assets)
 });
 
 // renders edit post page
@@ -116,16 +176,26 @@ router.get('/post/:id/edit', withAuth, async (req, res) => {
       include: [
         {
           model: Category,
+<<<<<<< HEAD
           attributes: ['name'],
         },
       ],
+=======
+          attributes: ['name']
+        }
+      ]
+>>>>>>> a83a11e (adding assets)
     });
 
     const post = postData.get({ plain: true });
 
     res.render('edit-post', {
       post,
+<<<<<<< HEAD
       logged_in: req.session.logged_in,
+=======
+      logged_in: req.session.logged_in
+>>>>>>> a83a11e (adding assets)
     });
   } catch (err) {
     res.status(500).json(err);
@@ -139,11 +209,19 @@ router.get('/profile', withAuth, async (req, res) => {
       include: [
         {
           model: User,
+<<<<<<< HEAD
           attributes: ['username'],
         },
         {
           model: Category,
           attributes: ['name'],
+=======
+          attributes: ['username']
+        },
+        {
+          model: Category,
+          attributes: ['name']
+>>>>>>> a83a11e (adding assets)
         },
       ],
       where: { user_id: req.session.user_id }
@@ -153,9 +231,13 @@ router.get('/profile', withAuth, async (req, res) => {
 
     const categoryData = await Category.findAll({});
 
+<<<<<<< HEAD
     const categories = categoryData.map((category) =>
       category.get({ plain: true })
     );
+=======
+    const categories = categoryData.map((category) => category.get({ plain: true }));
+>>>>>>> a83a11e (adding assets)
     console.log(posts);
     res.render('profile', {
       posts,
