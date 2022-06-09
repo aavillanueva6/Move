@@ -3,42 +3,49 @@ const { Post, Comment } = require('../../models');
 
 // create new post
 router.post('/', async (req, res) => {
-  try {
-    req.body.user_id = req.session.user_id;
-    const postData = await Post.create(req.body);
-    res.status(200).json(postData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+
+    try {
+        req.body.user_id = req.session.user_id;
+
+        const postData = await Post.create(req.body);
+
+        res.status(200).json(postData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 // update existing post
-router.put('./:id', async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id);
+router.put('/:id', async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id);
 
-    if (!postData) {
-      res.status(404).json({ message: 'No post found with that id' });
-      return;
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with that id' });
+            return;
+        }
+
+        console.log(postData);
+
+        const updatedPostData = await Post.update({
+                title: req.body.title,
+                content: req.body.content
+                //TODO category_id
+            },
+            {
+                where: {
+                    id: req.params.id,
+                    user_id: req.session.user_id
+                }
+            }
+        );
+
+        console.log(updatedPostData);
+        res.status(200).json(updatedPostData);
+    } catch (err) {
+        res.status(500).json(err);
     }
 
-    const updatedPostData = await Post.update(
-      {
-        title: req.body.title,
-        content: req.body.content,
-      },
-      {
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
-      }
-    );
-
-    res.status(200).json(updatedPostData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
 
 //id
