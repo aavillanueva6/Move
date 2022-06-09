@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <div class="row">
-  <div class="col-auto">
-    <h2>Hello, {{username}} Select your favorite outdoor activity! </h2>
+  <div class="col-auto" >
+    <h2>Hello, {{username}} What would you like to do today?</h2>
   </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,16 +22,23 @@
 </nav>
 
 
+
+{{!-- Seperating coll --}}
+
+
+{{!-- Create post button --}}
+<div class="card">
 <div class="container">
+<div class="text-center">
   <div class="row">
-    <div class="col-sm">
-      <a href='/post/new'>Create a new post</a>
-    </div>
-    <div class="col-sm">
-      
-    </div>
-    <div class="col-sm">
-      Chat with fellow enthusiasts!
+    {{!-- first --}}
+    <div class="col">
+      <a href='/post/new' class="btn btn-primary btn-lg" style="background-color:#080741;">Create a new Post</a>
+  </div>
+    {{!-- 2nd --}}
+    <div class="col">
+<div class="card">
+     <h3> Chat with fellow outdoor enthusiasts!</h3>
      {{!-- Chat client --}}
  <div class="socket-container" id="messageContainer">
       <ul id="socketMessages"></ul>
@@ -40,12 +47,14 @@
       <input id="socketText" autocomplete="off" /><button>Send</button>
     </form>
 <div>
+  </div>
+  </div>
 
     </div>
   </div>
 </div>
 
-
+</div>
   {{#if posts.length}}
 
     <div class='col-md-6 project-list'>

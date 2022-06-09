@@ -2,7 +2,9 @@
 const newPostHandler = async (event) => {
   event.preventDefault();
 
-  const categories = document.querySelector('#category').getElementsByTagName('option');
+  const categories = document
+    .querySelector('#category')
+    .getElementsByTagName('option');
 
   const title = document.querySelector('#post-title').value.trim();
   const content = document.querySelector('#post-content').value.trim();
@@ -55,7 +57,7 @@ const updatePostHandler = async (event) => {
     const response = await fetch(`/api/posts/${postId}`, {
       method: 'PUT',
       body: JSON.stringify({ title, content, category_id }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
@@ -74,7 +76,7 @@ const deletePostHandler = async (event) => {
 
   const response = await fetch(`/api/posts/${postId}`, {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
   });
 
   if (response.ok) {
