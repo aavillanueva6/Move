@@ -96,21 +96,24 @@ router.get('/post/:id', async (req, res) =>
 });
 
 // renders create post page
-router.get('/post/new', withAuth, async (req, res) => {
+router.get('/post/new', withAuth, async (req, res) =>
+{
     res.render('create-post');
 });
 
 // renders edit post page
-router.get('/post/:id/edit', withAuth, async (req, res) => {
-    try {
+router.get('/post/:id/edit', withAuth, async (req, res) =>
+{
+    try
+    {
         const postData = await Post.findByPk(req.params.id, {
-            include : [
+            include: [
                 {
                     model: Category,
                     attributes: ['name']
                 }
             ]
-        }); 
+        });
 
         const post = postData.get({ plain: true });
 
@@ -118,7 +121,8 @@ router.get('/post/:id/edit', withAuth, async (req, res) => {
             post,
             logged_in: req.session.logged_in
         });
-    } catch (err) {
+    } catch (err)
+    {
         res.status(500).json(err);
     }
 });
@@ -133,16 +137,26 @@ router.get('/profile', withAuth, async (req, res) =>
                 {
                     model: User,
                     attributes: ['username']
-                }
+                },
+                {
+                    model: Category,
+                    attributes: ['name']
+                },
             ],
-            where: { user_id: req.session.user_id }
+            //where: { user_id: req.session.user_id }
         });
 
         const posts = postData.map((post) => post.get({ plain: true }));
 
+        const categoryData = await Category.findAll({});
+
+        const categories = categoryData.map((category) => category.get({ plain: true }));
+        console.log(posts);
         res.render('profile', {
             posts,
-            logged_in: true
+            categories,
+            logged_in: true,
+            username: req.session.username,
         });
     } catch (err)
     {
