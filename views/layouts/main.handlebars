@@ -1,51 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Move</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="./assets/move.png" width="35px" class="d-inline-block align-top" alt="move icon"> <a
-        class="navbar-brand" href="/">Move</a>
-    </a>
-  </nav>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-
-  {{#if logged_in}}
-  <a href="/profile">profile</a> |
-  <button class="no-button" id="logout">logout</button>
-
-  {{/if}}
-  </nav>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-  </div>
-  </div>
-
-  <main class="container container-fluid mt-5">
-
-    {{{body}}}
-
-  </main>
-  </div>
-
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <div class="row">
-
-    {{#if logged_in}}
-    <script src="/js/logout.js"></script>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Move</title>
+    <link
+      rel='stylesheet'
+      href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+    />
+    <link rel='stylesheet' href='./css/style.css' />
+  </head>
+  <body>
+    <nav class='navbar navbar-light bg-light'>
+      <a class='navbar-brand' href='#'>
+        {{!-- Navbar icon --}}
+        <img
+          src='/./assets/move.png'
+          width='35px'
+          class='d-inline-block align-top'
+          alt='move icon'
+          href='/'
+        />
+        {{!-- If a user is not logged in then render login and signup links in the navbar --}}
+        {{#unless logged_in}}
+        <a href='/login'>login</a>
+        <a href='/signup'>signup</a>
+        {{/unless}}
+        {{!-- If a user is logged in then render profile and logout links in the navbar --}}
+        {{#if logged_in}}
+      <a href='/profile'>profile</a>
+      <button class='no-button' id='logout'>logout</button>
+      <script src='/js/logout.js'></script>
     {{/if}}
+    {{!-- "move" text that links back to the hompage --}}
+        <a class='navbar-brand' href='/'> move</a>
+      </a>
+      </nav>
+    </div>
+    <div class='collapse navbar-collapse' id='navbarNav'>
+    </div>
+{{!-- The body handlebar will render our homepage --}}
+    <main class='container container-fluid mt-5'>
+     
+      {{{body}}}
+    
+    </main>
 
-
-</body>
-
+    <script
+      src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+    ></script>
+  </body>
 </html>

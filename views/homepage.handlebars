@@ -1,27 +1,18 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="row">
-      <div class="rcol-sm"></div>
-      <h2>signup</h2>
-
-      <form class="form signup-form">
-        <div class="form-group">
-          <label for="name-signup">name:</label>
-          <input class="form-input" type="text" id="name-signup" />
-        </div>
-        <div class="form-group">
-          <label for="email-signup">email:</label>
-          <input class="form-input" type="text" id="email-signup" />
-        </div>
-        <div class="form-group">
-          <label for="password-signup">password:</label>
-          <input class="form-input" type="password" id="password-signup" />
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit" class="signupBtn">signup</button>
-        </div>
-      </form>
+{{!-- Looping through all of our posts and displaying them on the homepage --}}
+{{#each posts as |post|}}
+  <div class='row mb-4 post'>
+    <div class='col-md-5'>
+      <h2>
+        <a href='/post/{{post.id}}'>{{post.title}}</a>
+      </h2>
+      <p>Created by {{post.user.username}} on {{post.date_created}}</p>
+    </div>
+    <div class='col-md-7'>
+      <p>
+        {{post.content}}
+      </p>
     </div>
   </div>
-  <script src="/js/signup.js"></script>
+{{/each}}
+
+<script src='./js/login.js'></script>
