@@ -2,9 +2,20 @@
 const newPostHandler = async (event) => {
   event.preventDefault();
 
+  const categories = document.querySelector('#category').getElementsByTagName('option');
+
   const title = document.querySelector('#post-title').value.trim();
   const content = document.querySelector('#post-content').value.trim();
-  const category_id = 2;
+
+  const category_name = document.querySelector('#post-category').value;
+  let category_id;
+
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].label === category_name) {
+      category_id = categories[i].dataset.id;
+      i = categories.length;
+    }
+  }
 
   if (title && content && category_id) {
     const response = await fetch('/api/posts', {
@@ -29,8 +40,16 @@ const updatePostHandler = async (event) => {
 
   const postId = event.target.dataset.id;
   const title = document.querySelector('#post-title').value.trim();
-  const content = document.querySelector('#post-content').value.trim();
-  const category_id = 2; //TODO category
+
+  const category_name = document.querySelector('#post-category').value;
+  let category_id;
+
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].label === category_name) {
+      category_id = categories[i].dataset.id;
+      i = categories.length;
+    }
+  }
 
   if (title && content && category_id) {
     const response = await fetch(`/api/posts/${postId}`, {
