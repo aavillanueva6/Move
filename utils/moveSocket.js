@@ -51,28 +51,13 @@ function moveSocket(io, sequelize, datetime) {
     if (process.env.JAWSDB_URL) {
       sessionString = 'Sessions';
     }
-    const sessionQueryData = await sequelize.query(
-      `SELECT * FROM ${sessionString} WHERE sid='${SessionCookieID}'`,
-      (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(result);
-        }
-      }
-    );
-
-    const cookieJsonData = sessionQueryData[0][0].data;
-
-    parsedCookieData = JSON.parse(cookieJsonData);
-
-    const logged_in = parsedCookieData.logged_in;
-
-    const loggedInUser = parsedCookieData.user_id;
+    let logged_in;
+    let userID = '';
+    let loggedInUser;
     let loggedInUserName = '';
-    if (logged_in) {
-      const userQueryData = await sequelize.query(
-        `SELECT * FROM user WHERE id=${loggedInUser}`,
+    try {
+      const sessionQueryData = await sequelize.query(
+        `SELECT * FROM ${sessionString} WHERE sid='${SessionCookieID}'`,
         (err, result) => {
           if (err) {
             console.log(err);
@@ -82,27 +67,48 @@ function moveSocket(io, sequelize, datetime) {
         }
       );
 
-      loggedInUserName = userQueryData[0][0].username;
+      const cookieJsonData = sessionQueryData[0][0].data;
+
+      parsedCookieData = JSON.parse(cookieJsonData);
+
+      logged_in = parsedCookieData.logged_in;
+
+      loggedInUser = parsedCookieData.user_id;
+      if (logged_in) {
+        const userQueryData = await sequelize.query(
+          `SELECT * FROM user WHERE id=${loggedInUser}`,
+          (err, result) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(result);
+            }
+          }
+        );
+
+        loggedInUserName = userQueryData[0][0].username;
+      }
+
+      socket.emit('session', {
+        sessionID: socket.sessionID,
+        userID: socket.userID,
+      });
+
+      if (logged_in) {
+        // set userID to logged in user's name
+        userID = loggedInUserName;
+      } else {
+        userID = createAnonUser();
+      }
+
+      const socketID = socket.id;
+      const newUser = {
+        socketID,
+        userID,
+      };
+    } catch (err) {
+      console.log(err);
     }
-
-    socket.emit('session', {
-      sessionID: socket.sessionID,
-      userID: socket.userID,
-    });
-
-    let userID = '';
-
-    if (logged_in) {
-      // set userID to logged in user's name
-      userID = loggedInUserName;
-    } else {
-      userID = createAnonUser();
-    }
-    const socketID = socket.id;
-    const newUser = {
-      socketID,
-      userID,
-    };
 
     socket.broadcast.emit('hi');
     socket.on('disconnect', () => {
@@ -111,7 +117,7 @@ function moveSocket(io, sequelize, datetime) {
     socket.on('chat message', (msg, sentPage) => {
       console.log(`message: ${msg} from: ${userID}`);
       io.emit('chat message', msg, userID, sentPage);
-      currentTime = datetime.create().now();
+      const currentTime = datetime.create().now();
       const messageData = Message.create({
         message_body: msg,
         sent_page: sentPage,
