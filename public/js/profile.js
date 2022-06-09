@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-
 const newFormHandler = async (event) => {
-
-=======
-const newFormHandler = async (event) => {
->>>>>>> a83a11e (adding assets)
   event.preventDefault();
 
   const name = document.querySelector('#post-name').value.trim();
@@ -20,10 +14,6 @@ const newFormHandler = async (event) => {
       },
     });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a83a11e (adding assets)
     if (response.ok) {
       document.location.replace('/profile');
     } else {
@@ -56,4 +46,3 @@ document
   .querySelector('.post-list')
 
   .addEventListener('click', delButtonHandler);
-

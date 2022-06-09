@@ -9,7 +9,6 @@ const categoryData = require('./categoryData.json');
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-<<<<<<< HEAD
   for (const category of categoryData) {
     await Category.create({
       ...category,
@@ -34,29 +33,6 @@ const seedDatabase = async () => {
     });
   }
 
-=======
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
-
-  const category = await Category.bulkCreate(categoryData, {
-    individualHooks: true,
-    returning: true,
-  });
-
-  const posts = await Post.bulkCreate(postData, {
-    individualHooks: true,
-    returning: true,
-  });
-
-  const comments = await Comment.bulkCreate(commentData, {
-    individualHooks: true,
-    returning: true,
-  });
-
-
->>>>>>> a83a11e (adding assets)
   process.exit(0);
 };
 
