@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Post } = require('../../models');
+const { Category } = require('../../models');
 
 // gets all categories
 router.get('/', async (req, res) => {
@@ -14,8 +14,5 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-// gets posts of a certain category?
-router.get('/:id', async (req, res) => {});
 
 module.exports = router;
