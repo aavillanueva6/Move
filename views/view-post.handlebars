@@ -8,7 +8,8 @@
       <h2>
       <a href='/post/{{post.id}}'>{{post.title}}</a>
       </h2>
-      <p>Created by {{post.user.username}} on {{post.date_created}}</p>
+      <p>{{post.category.name}}</p>
+      <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
     </div>
     <div class='col-md-7'>
       <p>
@@ -48,7 +49,7 @@
  <div class='row mb-4 post'>
     <div class='col-md-5'>
 
-      <p>Comment by {{comment.user.username}} on {{comment.date_created}}</p>
+      <p>Comment by {{comment.user.username}} on {{ format_date comment.date_created}}</p>
     </div>
     <div class='col-md-7'>
       <p>
