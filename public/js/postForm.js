@@ -1,19 +1,19 @@
 // create new post
 const newPostHandler = async (event) => {
-    event.preventDefault();
-  
-    const title = document.querySelector('#post-title').value.trim();
-    const content = document.querySelector('#post-content').value.trim();
-    const category_id = 2;
+  event.preventDefault();
 
-    if (title && content && category_id) {
-      const response = await fetch(`/api/posts`, {
-        method: 'POST',
-        body: JSON.stringify({ title, content, category_id }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  const title = document.querySelector('#post-title').value.trim();
+  const content = document.querySelector('#post-content').value.trim();
+  const category_id = 2;
+
+  if (title && content && category_id) {
+    const response = await fetch('/api/posts', {
+      method: 'POST',
+      body: JSON.stringify({ title, content, category_id }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     if (response.ok) {
       document.location.replace('/profile');
@@ -52,7 +52,7 @@ const deletePostHandler = async (event) => {
   event.preventDefault();
 
   const postId = event.target.dataset.id;
-  
+
   const response = await fetch(`/api/posts/${postId}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' }

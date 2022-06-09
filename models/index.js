@@ -22,7 +22,7 @@ User.hasMany(Message, {
 
 Message.belongsTo(User, {
   foreignKey: 'user_id',
-  
+
 });
 
 User.hasMany(Comment, {

@@ -57,12 +57,26 @@ router.get('/category/:id', async (req, res) => {
   }
 });
 
-  // renders create post page
-router.get('/post/new', withAuth, async (req, res) =>
+// renders create post page
+router.get('/post/new', async (req, res) =>
 {
-    res.render('create-post');
+    try
+    {
+        const categoryData = await Category.findAll();
+
+        const categories = categoryData.map((category) => category.get({ plain: true }));
+
+        res.render('create-post', {
+            categories,
+            logged_in: req.session.logged_in
+        });
+    }
+    catch (err)
+    {
+        res.status(500).json(err);
+    }
 });
-  
+
 // renders single post
 router.get('/post/:id', async (req, res) =>
 {
@@ -98,6 +112,40 @@ router.get('/post/:id', async (req, res) =>
     }
 });
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+// renders edit post page
+router.get('/post/:id/edit', withAuth, async (req, res) =>
+{
+    try
+    {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [
+                {
+                    model: Category
+                }
+            ]
+        });
+
+        const categoryData = await Category.findAll();
+
+        const post = postData.get({ plain: true });
+        const categories = categoryData.map((category) => category.get({ plain: true }));
+
+        res.render('edit-post', {
+            post,
+            categories,
+            logged_in: req.session.logged_in
+        });
+    }
+    catch (err)
+    {
+        res.status(500).json(err);
+    }
+=======
 // renders edit post page
 router.get('/post/:id/edit', withAuth, async (req, res) => {
   try {
@@ -119,6 +167,7 @@ router.get('/post/:id/edit', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+>>>>>>> 42fbc0e7b91fb77fbb717c145bc4e4b55f4391d8
 });
 
 // renders profile page, sends all posts created by current user
