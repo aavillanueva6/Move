@@ -1,6 +1,5 @@
 
-const newFormHandler = async (event) =>
-{
+const newFormHandler = async (event) => {
 
   event.preventDefault();
 
@@ -8,9 +7,8 @@ const newFormHandler = async (event) =>
 
   const description = document.querySelector('#post-desc').value.trim();
 
-  if (name && description)
-  {
-    const response = await fetch(`/api/posts`, {
+  if (name && description) {
+    const response = await fetch('/api/posts', {
       method: 'POST',
       body: JSON.stringify({ name, description }),
       headers: {
@@ -19,31 +17,25 @@ const newFormHandler = async (event) =>
     });
 
 
-    if (response.ok)
-    {
+    if (response.ok) {
       document.location.replace('/profile');
-    } else
-    {
+    } else {
       alert('Failed to create post');
     }
   }
 };
 
-const delButtonHandler = async (event) =>
-{
-  if (event.target.hasAttribute('data-id'))
-  {
+const delButtonHandler = async (event) => {
+  if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
     const response = await fetch(`/api/posts/${id}`, {
       method: 'DELETE',
     });
 
-    if (response.ok)
-    {
+    if (response.ok) {
       document.location.replace('/profile');
-    } else
-    {
+    } else {
       alert('Failed to delete post');
     }
   }
