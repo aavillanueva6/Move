@@ -44,7 +44,7 @@ router.get('/category/:id', async (req, res) => {
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render('category', {
+    res.render('view-category', {
       posts,
       logged_in: req.session.logged_in
     });
@@ -138,8 +138,7 @@ router.get('/profile', withAuth, async (req, res) => {
           attributes: ['username']
         },
         {
-          model: Category,
-          attributes: ['name']
+          model: Category
         },
       ],
       where: { user_id: req.session.user_id }
