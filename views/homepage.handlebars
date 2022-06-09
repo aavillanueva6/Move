@@ -1,45 +1,11 @@
-<link
-  rel='stylesheet'
-  href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-/>
-<div class='card' style='width: 18rem;'>
-  <div class='card-body'>
-    <div class='row'>
-      <div class='rcol-sm'></div>
-      <h2>Login</h2>
-
-      <form class='form login-form'>
-        <div class='form-group'>
-          <label for='email-login'>email:</label>
-          <input class='form-input' type='text' id='email-login' />
-        </div>
-        <div class='form-group'>
-          <label for='password-login'>password:</label>
-          <input class='form-input' type='password' id='password-login' />
-        </div>
-        <div class='form-group'>
-          <button
-            class='btn btn-primary'
-            type='submit'
-            id='submitBtn'
-          >login</button>
-          or
-          <a href='/signup'>signup</a>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
+{{!-- Looping through all of our posts and displaying them on the homepage --}}
 {{#each posts as |post|}}
   <div class='row mb-4 post'>
     <div class='col-md-5'>
       <h2>
-
         <a href='/post/{{post.id}}'>{{post.title}}</a>
       </h2>
       <p>Created by {{post.user.username}} on {{post.date_created}}</p>
-
     </div>
     <div class='col-md-7'>
       <p>

@@ -79,7 +79,7 @@ router.get('/post/:id', async (req, res) => {
     const post = postData.get({ plain: true });
 
     // TODO: render page name
-    res.render('post', {
+    res.render('view-post', {
       post,
       logged_in: req.session.logged_in,
     });

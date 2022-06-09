@@ -13,33 +13,41 @@
   <body>
     <nav class='navbar navbar-light bg-light'>
       <a class='navbar-brand' href='#'>
+        {{!-- Navbar icon --}}
         <img
-          src='./assets/move.png'
+          src='/./assets/move.png'
           width='35px'
           class='d-inline-block align-top'
           alt='move icon'
+          href='/'
         />
-        <a class='navbar-brand' href='/'> move</a>
-      </a>
-    </nav>
-    {{#if logged_in}}
+        {{!-- If a user is not logged in then render login and signup links in the navbar --}}
+        {{#unless logged_in}}
+        <a href='/login'>login</a>
+        <a href='/signup'>signup</a>
+        {{/unless}}
+        {{!-- If a user is logged in then render profile and logout links in the navbar --}}
+        {{#if logged_in}}
       <a href='/profile'>profile</a>
-      |
       <button class='no-button' id='logout'>logout</button>
       <script src='/js/logout.js'></script>
     {{/if}}
-
+    {{!-- "move" text that links back to the hompage --}}
+        <a class='navbar-brand' href='/'> move</a>
+      </a>
+      </nav>
+    </div>
     <div class='collapse navbar-collapse' id='navbarNav'>
     </div>
+{{!-- The body handlebar will render our homepage --}}
     <main class='container container-fluid mt-5'>
-
+     
       {{{body}}}
+    
     </main>
 
     <script
       src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
     ></script>
-    <div class='row'>
-    </div>
   </body>
 </html>
