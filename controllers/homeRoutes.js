@@ -140,6 +140,7 @@ router.get('/post/:id/edit', withAuth, async (req, res) =>
     {
         res.status(500).json(err);
     }
+});
 
 // renders profile page, sends all posts created by current user
 router.get('/profile', withAuth, async (req, res) => {
