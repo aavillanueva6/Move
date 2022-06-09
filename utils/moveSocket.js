@@ -47,8 +47,12 @@ function moveSocket(io, sequelize, datetime) {
     const actual = sessionCookie.split('=')[1].split('.')[0].split('');
     actual.splice(0, 4);
     const SessionCookieID = actual.join('');
+    let sessionString = 'sessions';
+    if (process.env.JAWSDB_URL) {
+      sessionString = 'Sessions';
+    }
     const sessionQueryData = await sequelize.query(
-      `SELECT * FROM sessions WHERE sid='${SessionCookieID}'`,
+      `SELECT * FROM ${sessionString} WHERE sid='${SessionCookieID}'`,
       (err, result) => {
         if (err) {
           console.log(err);

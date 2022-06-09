@@ -10,16 +10,16 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['username'],
-        },
-      ],
+          attributes: ['username']
+        }
+      ]
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
     res.render('homepage', {
       posts,
-      logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -34,20 +34,19 @@ router.get('/category/:id', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['username']
         },
         {
-          model: Category,
-        },
-      ],
+          model: Category
+        }
+      ]
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // TODO: render page name
     res.render('category', {
       posts,
-      logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,17 +54,15 @@ router.get('/category/:id', async (req, res) => {
 });
 
 // renders create post page
-router.get('/post/new', async (req, res) => {
+router.get('/post/new', withAuth, async (req, res) => {
   try {
     const categoryData = await Category.findAll();
 
-    const categories = categoryData.map((category) =>
-      category.get({ plain: true })
-    );
+    const categories = categoryData.map((category) => category.get({ plain: true }));
 
     res.render('create-post', {
       categories,
-      logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -79,30 +76,25 @@ router.get('/post/:id', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['username']
         },
         {
           model: Category,
-          attributes: ['name'],
+          attributes: ['name']
         },
         {
           model: Comment,
-          include: [User],
-        },
-      ],
+          include: [User]
+        }
+      ]
     });
 
     const post = postData.get({ plain: true });
-    console.log('post', post);
-
-    const comments = post.comments;
-    console.log('comments', comments);
 
     // TODO: render page name
     res.render('view-post', {
       post,
-      comments,
-      logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -116,16 +108,20 @@ router.get('/post/:id/edit', withAuth, async (req, res) => {
       include: [
         {
           model: Category,
-          attributes: ['name'],
-        },
-      ],
+          attributes: ['name']
+        }
+      ]
     });
+    const categoryData = await Category.findAll();
+
 
     const post = postData.get({ plain: true });
+    const categories = categoryData.map((category) => category.get({ plain: true }));
 
     res.render('edit-post', {
       post,
-      logged_in: req.session.logged_in,
+      categories,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -139,11 +135,11 @@ router.get('/profile', withAuth, async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['username']
         },
         {
           model: Category,
-          attributes: ['name'],
+          attributes: ['name']
         },
       ],
       where: { user_id: req.session.user_id }
@@ -153,9 +149,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
     const categoryData = await Category.findAll({});
 
-    const categories = categoryData.map((category) =>
-      category.get({ plain: true })
-    );
+    const categories = categoryData.map((category) => category.get({ plain: true }));
     console.log(posts);
     res.render('profile', {
       posts,
