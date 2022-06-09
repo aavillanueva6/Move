@@ -112,11 +112,6 @@ router.get('/post/:id', async (req, res) =>
     }
 });
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 // renders edit post page
 router.get('/post/:id/edit', withAuth, async (req, res) =>
 {
@@ -145,30 +140,6 @@ router.get('/post/:id/edit', withAuth, async (req, res) =>
     {
         res.status(500).json(err);
     }
-=======
-// renders edit post page
-router.get('/post/:id/edit', withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: Category,
-          attributes: ['name'],
-        },
-      ],
-    });
-
-    const post = postData.get({ plain: true });
-
-    res.render('edit-post', {
-      post,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
->>>>>>> 42fbc0e7b91fb77fbb717c145bc4e4b55f4391d8
-});
 
 // renders profile page, sends all posts created by current user
 router.get('/profile', withAuth, async (req, res) => {
