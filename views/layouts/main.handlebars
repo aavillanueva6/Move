@@ -11,8 +11,8 @@
     <link rel='stylesheet' href='./css/style.css' />
   </head>
   <body>
-    <nav class='navbar navbar-light bg-light'>
-      <a class='navbar-brand' href='#'>
+    <nav class='navbar .bg-#FFB611'>
+      <a class='navbar-brand' href='/'>
         {{!-- Navbar icon --}}
         <img
           src='/./assets/move.png'
@@ -29,7 +29,7 @@
         {{!-- If a user is logged in then render profile and logout links in the navbar --}}
         {{#if logged_in}}
       <a href='/profile'>profile</a>
-      <button class='no-button' id='logout'>logout</button>
+      <button  id='logout'>logout</button>
       <script src='/js/logout.js'></script>
     {{/if}}
     {{!-- "move" text that links back to the hompage --}}
@@ -49,5 +49,78 @@
     <script
       src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
     ></script>
+    {{!-- Socket script --}}
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const messageContainer = document.getElementById('messageContainer');
+
+      if (messageContainer) {
+        // connect to socket
+        const socket = io();
+
+        socket.on('session', ({ sessionID, userID, username }) => {
+          // attach the session ID to the next reconnection attempts
+          socket.auth = { sessionID };
+
+          // save the ID of the user
+          socket.userID = userID;
+        });
+
+        const socketMessages = document.getElementById('socketMessages');
+        const socketForm = document.getElementById('socketForm');
+        const socketText = document.getElementById('socketText');
+
+        const userID = socket.id;
+
+        function updateScroll() {
+          messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+
+        socketForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (socketText.value) {
+            const path = document.location.pathname;
+            let sentPage = '';
+            if (path === '/') {
+              sentPage = 'home';
+            } else {
+              sentPage = path.split('/')[1];
+            }
+            // console.log('sentPage ' + sentPage);
+
+            socket.emit('chat message', socketText.value, sentPage);
+            socketText.value = '';
+          }
+        });
+
+        socket.on('chat message', async function (msg, userID, sentPage) {
+          const path = document.location.pathname;
+          const pathArr = path.split('/');
+          let thisPage = '';
+          if (path === '/') {
+            thisPage = 'home';
+          } else {
+            thisPage = path.split('/')[1];
+          }
+          // console.log('thisPage ' + thisPage);
+          // console.log('sentPage (in rec): ' + sentPage);
+
+          if (thisPage === sentPage) {
+            const socketID = socket.id;
+            var row = document.createElement('li');
+            var message = document.createElement('span');
+            message.classList.add('socket-message');
+            var user = document.createElement('span');
+            user.classList.add('socket-user');
+            message.textContent = msg;
+            user.textContent = `(${userID})`;
+            socketMessages.appendChild(row);
+            row.appendChild(message);
+            row.appendChild(user);
+            updateScroll();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
