@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "seed": "node seeds/seed.js",
-    "lint": "npx eslint **/*.js"
+    "lint": "npx eslint **/*.js",
+    "lintFix": "npx eslint --fix **/*.js"
   },
   "repository": {
     "type": "git",

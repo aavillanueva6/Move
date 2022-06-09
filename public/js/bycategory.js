@@ -1,7 +1,6 @@
-const categoryPosts = async (event) =>
-{
-    event.preventDefault();
+const categoryPosts = async (event) => {
+  event.preventDefault();
 
-    const category = [];
+  const category = [];
 
 };
