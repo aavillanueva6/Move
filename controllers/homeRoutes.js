@@ -90,10 +90,11 @@ router.get('/post/:id', async (req, res) => {
     });
 
     const post = postData.get({ plain: true });
-
+    const comments = post.comments;
     // TODO: render page name
     res.render('view-post', {
       post,
+      comments,
       logged_in: req.session.logged_in
     });
   } catch (err) {

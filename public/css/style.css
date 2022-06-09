@@ -59,9 +59,15 @@ body {
   text-align: right;
 }
 .socket-container {
+
   height: 250px;
   width: 498px;
   border: 1px solid #ccc;
   font: 16px/26px Georgia, Garamond, Serif;
   overflow: auto;
+}
+.btnSize {
+  width: 190px;
+  height: 50px;
+  margin:15px
 }

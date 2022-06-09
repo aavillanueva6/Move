@@ -4,14 +4,15 @@
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Move</title>
+    <link rel="icon" type="image/x-icon" href="/./assets/move.png">
     <link
       rel='stylesheet'
       href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
     />
     <link rel='stylesheet' href='./css/style.css' />
   </head>
-  <body>
-    <nav class='navbar .bg-#FFB611'>
+  <body >
+    <nav class='navbar' style="background-color: #FFB611;">
       <a class='navbar-brand' href='/'>
         {{!-- Navbar icon --}}
         <img
@@ -21,20 +22,22 @@
           alt='move icon'
           href='/'
         />
+
+         <a class='navbar-brand' href='/'> move</a>
+      </a>
         {{!-- If a user is not logged in then render login and signup links in the navbar --}}
         {{#unless logged_in}}
-        <a href='/login'>login</a>
-        <a href='/signup'>signup</a>
+        <a class='navbar-brand' href='/login'>login</a>
+        <a class='navbar-brand' href='/signup'>signup</a>
         {{/unless}}
         {{!-- If a user is logged in then render profile and logout links in the navbar --}}
         {{#if logged_in}}
-      <a href='/profile'>profile</a>
-      <a   id='logout'>logout</a>
+      <a class='navbar-brand' href='/profile'>profile</a>
+      <a class='navbar-brand' id='logout'>logout</a>
       <script src='/js/logout.js'></script>
     {{/if}}
     {{!-- "move" text that links back to the hompage --}}
-        <a class='navbar-brand' href='/'> move</a>
-      </a>
+       
       </nav>
     </div>
     <div class='collapse navbar-collapse' id='navbarNav'>

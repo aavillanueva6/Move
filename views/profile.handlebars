@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <div class="row">
-  <div class="col-auto">
+  <div class="col-auto" >
     <h2>Hello, {{username}} What would you like to do today?</h2>
   </div>
 </div>
@@ -20,18 +20,24 @@
     </ul>
   </div>
 </nav>
-<div class="card">
+
+
+
+{{!-- Seperating coll --}}
+
 
 {{!-- Create post button --}}
+<div class="card">
 <div class="container">
+<div class="text-center">
   <div class="row">
-    <div class="col-sm">
-      <a href='/post/new' class="btn btn-primary">Create a new Post</a>
-    </div>
-    <div class="col-sm">
-      
-    </div>
-    <div class="col-sm">
+    {{!-- first --}}
+    <div class="col">
+      <a href='/post/new' class="btn btn-primary btn-lg" style="background-color:#080741;">Create a new Post</a>
+  </div>
+    {{!-- 2nd --}}
+    <div class="col">
+<div class="card">
      <h3> Chat with fellow outdoor enthusiasts!</h3>
      {{!-- Chat client --}}
  <div class="socket-container" id="messageContainer">
@@ -41,6 +47,8 @@
       <input id="socketText" autocomplete="off" /><button>Send</button>
     </form>
 <div>
+  </div>
+  </div>
 
     </div>
   </div>
