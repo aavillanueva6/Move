@@ -1,5 +1,7 @@
+
 const newFormHandler = async (event) =>
 {
+
   event.preventDefault();
 
   const name = document.querySelector('#post-name').value.trim();
@@ -15,6 +17,7 @@ const newFormHandler = async (event) =>
         'Content-Type': 'application/json',
       },
     });
+
 
     if (response.ok)
     {
@@ -52,4 +55,6 @@ document
 
 document
   .querySelector('.post-list')
+
   .addEventListener('click', delButtonHandler);
+
