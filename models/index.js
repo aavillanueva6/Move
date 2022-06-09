@@ -3,10 +3,6 @@ const Post = require('./post');
 const Comment = require('./comment');
 const Category = require('./category');
 const Message = require('./messages');
-<<<<<<< HEAD
-
-=======
->>>>>>> a83a11e (adding assets)
 
 User.hasMany(Post, {
   foreignKey: 'user_id',
@@ -15,10 +11,6 @@ User.hasMany(Post, {
 
 Post.belongsTo(User, {
   foreignKey: 'user_id',
-<<<<<<< HEAD
-
-=======
->>>>>>> a83a11e (adding assets)
 });
 
 User.hasMany(Message, {
@@ -28,7 +20,6 @@ User.hasMany(Message, {
 
 Message.belongsTo(User, {
   foreignKey: 'user_id',
-
 });
 
 User.hasMany(Comment, {
@@ -58,6 +49,4 @@ Post.belongsTo(Category, {
   foreignKey: 'category_id',
 });
 
-
 module.exports = { User, Post, Comment, Category, Message };
-

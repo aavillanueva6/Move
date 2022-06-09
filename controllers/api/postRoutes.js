@@ -3,20 +3,11 @@ const { Post, Comment } = require('../../models');
 
 // create new post
 router.post('/', async (req, res) => {
-<<<<<<< HEAD
-
   try {
     req.body.user_id = req.session.user_id;
 
     const postData = await Post.create(req.body);
 
-=======
-  try {
-    req.body.user_id = req.session.user_id;
-
-    const postData = await Post.create(req.body);
-
->>>>>>> a83a11e (adding assets)
     res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
@@ -35,17 +26,18 @@ router.put('/:id', async (req, res) => {
 
     console.log(postData);
 
-    const updatedPostData = await Post.update({
-      title: req.body.title,
-      content: req.body.content
-      //TODO category_id
-    },
-    {
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id
+    const updatedPostData = await Post.update(
+      {
+        title: req.body.title,
+        content: req.body.content,
+        //TODO category_id
+      },
+      {
+        where: {
+          id: req.params.id,
+          user_id: req.session.user_id,
+        },
       }
-    }
     );
 
     console.log(updatedPostData);
@@ -53,10 +45,6 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> a83a11e (adding assets)
 });
 
 //id
@@ -72,13 +60,8 @@ router.delete('/:id', async (req, res) => {
     const response = await Post.destroy({
       where: {
         id: req.params.id,
-<<<<<<< HEAD
         user_id: req.session.user_id,
       },
-=======
-        user_id: req.session.user_id
-      }
->>>>>>> a83a11e (adding assets)
     });
 
     if (!response) {
@@ -91,9 +74,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-module.exports = router;
-=======
 // create a new comment on a post
 router.post('/:id/comment', async (req, res) => {
   try {
@@ -108,4 +88,3 @@ router.post('/:id/comment', async (req, res) => {
 });
 
 module.exports = router;
->>>>>>> a83a11e (adding assets)
