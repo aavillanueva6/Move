@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 
     res.render('homepage', {
       posts,
+      curr_user_id: req.session.user_id,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
