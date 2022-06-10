@@ -2,22 +2,22 @@
   <div class="row justify-content-center">
     <div class="col-md-8" >
       <h1> Add a new post</h1>
-      <div class="card">
+      <div class="card" id="newPostCard">
         <div class="card-body">
           <div class="row mt-4">
             <div class="col">
               <form class="form new-post-form">
                 <div class="form-group">
                   <label for="post-title">Post Title:</label>
-                  <input class="form-input col" type="text" id="post-title" name="post-title" />
+                  <input class="form-input col moveForm" type="text" id="post-title" name="post-title" />
                 </div>
                 <div class="form-group">
                   <label for="post-content">Post Contents:</label>
-                  <textarea class="form-input col" id="post-content" name="post-content"></textarea>
+                  <textarea class="form-input col moveForm" id="post-content" name="post-content"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="post-category">Category:</label>
-                  <input list="category" class="form-control" id="post-category">
+                  <input list="category" class="form-control moveForm" id="post-category">
                   <datalist id="category">
                     {{#each categories as |category|}}
                     <option data-id="{{category.id}}">{{category.name}}</option>
@@ -25,7 +25,7 @@
                   </datalist>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Create Post</button>
+                  <button type="submit" class="btn moveFormSubmitBtns">Create Post</button>
                 </div>
               </form>
             </div>

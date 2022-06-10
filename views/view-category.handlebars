@@ -1,6 +1,6 @@
 {{category.name}}
 <div class="row">
-  <div class="col-7">
+  <div class="col-md-8">
     {{#each posts as |post|}}
     <div class='row mb-4 post'>
       <div class='col-md-5'>
@@ -18,13 +18,18 @@
     {{/each}}
   </div>
 
-  <div class="col-5">
+
     {{!-- Chat client --}}
-    <div class="socket-container" id="messageContainer">
-      <ul id="socketMessages"></ul>
+    <div class="col-md-4">
+    <h3> Chat with fellow outdoor enthusiasts!</h3>
+    <div class="socket-container row" id="messageContainer">
+      <ul id="socketMessages" class="col"></ul>
     </div>
-    <form id="socketForm" action="">
-      <input id="socketText" autocomplete="off" /><button>Send</button>
-    </form>
+    <div class="row">
+      <form id="socketForm" class="col" action="">
+        <input id="socketText" autocomplete="off"/>
+        <button>Send</button>
+      </form>
+    </div>
   </div>
 </div>
