@@ -1,69 +1,68 @@
 {{!-- This is the single post view,  where a user is sent when they click on a posts title --}}
 <div class="card">
-<div class="container" style="background-color: #FFF7D4;">
+  <div class="container" style="background-color: #FFF7D4;">
 
-<div class="text-center">
- <div class='row mb-4 post'>
-    <div class='col-md-5'>
-      <h2>
-      <a href='/post/{{post.id}}'>{{post.title}}</a>
-      </h2>
-      <p>{{post.category.name}}</p>
-      <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
-    </div>
-    <div class='col-md-7'>
-      <p>
-        {{post.content}}
-      </p>
+    <div class="text-center">
+      <div class='row mb-4 post'>
+        <div class='col-md-5'>
+          <h2>
+            <a href='/post/{{post.id}}'>{{post.title}}</a>
+          </h2>
+          <p>{{post.category.name}}</p>
+          <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
+        </div>
+        <div class='col-md-7'>
+          <p>
+            {{post.content}}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>
-</div>
- <div class="col-sm"></div>
-<div class="card">
-<div class="container" style="background-color: #FFF7D4;">
- <div class="col-sm">
   {{#if logged_in}}
-<form class="form new-comment-form">
-   <div class="form-group">
-        <label for="comment-name">Add a comment</label>
-        <input class="form-input" type="text" id="comment-name" name="comment-name" />
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create Comment</button>
-      </div>
-    </form>
+  {{!-- If a user is logged in then they get access to a comment form --}}
+<div class="card">
+  <div class="container" style="background-color: #FFF7D4;">
+    <div class="col-sm">
+      <form class="form new-comment-form">
+        <div class="form-group row">
+          <label class="col-4"for="comment-name">Add a comment</label>
+          <input class="form-input col-8" type="text" id="comment-name" name="comment-name" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Create Comment</button>
+        </div>
+      </form>
+    </div>
   </div>
- {{/if}}
 </div>
-</div>
-
-{{#each comments as |comment|}}
+  {{/if}}
+  
+  {{#if comments}}
 <h4> User comments</h4>
+{{#each comments as |comment|}}
+
 <div class="card">
   <div class="card-body">
-  
-<div class="text-center">
-  
- <div class='row mb-4 post'>
-    <div class='col-md-5'>
-
-      <p>Comment by {{comment.user.username}} on {{ format_date comment.date_created}}</p>
-    </div>
-    <div class='col-md-7'>
-      <p>
-        {{comment.content}}
-      </p>
+    <div class="text-center">
+      <div class='row post'>
+        <div class='col-md-5'>
+          <p>Comment by {{comment.user.username}} on {{ format_date comment.date_created}}</p>
+        </div>
+        <div class='col-md-7'>
+          <p>
+            {{comment.content}}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-<div>
-  {{/each}}
+</div>
+{{/each}}
+{{/if}}
 
-  </div>
-</div>
-</div>
-</div>
-
+ {{#if logged_in}}
   {{!-- If a user is logged in then they get access to a comment form --}}
 <script src="/./js/comment.js"></script>
+{{/if}}
