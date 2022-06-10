@@ -166,3 +166,9 @@
   #commentBucket > div:nth-child(even) {
     background: var(--darkYellow50);
   }
+
+/* homepage elements */
+  .homepagePostCard{
+    background-color: rgba(0,0,0,0);
+    border-color: var(--darkYellow);
+  }
