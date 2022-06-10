@@ -1,38 +1,38 @@
 [
-    {
-        "title": "Less Snow",
-        "content": "The top of Mt. Si has had most of the snow now melt off. So now the mile up to the top is clear. Still full of powder at the peak though.",
-        "user_id": 1,
-        "category_id": 1
-    },
-    {
-        "title": "Want to play?",
-        "content": "Hoping to get a game going the weekend after next, who is in?",
-        "user_id": 2,
-        "category_id": 2
-    },
-    {
-        "title": "Burke-Gillman trail!",
-        "content": "First time cycling on this trail, it was a wonder. Highly recommend to anyone looking for a new trail to explore.",
-        "user_id": 3,
-        "category_id": 3
-    },
-    {
-        "title": "Space Needle Skate Part",
-        "content": "C-Skate? I don't know for sure the name of the place. But its near the Space Needle and boy was it a fun place to skate around",
-        "user_id": 4,
-        "category_id": 4
-    },
-    {
-        "title": "Mt.Tiger Trail No.2",
-        "content": "Don't go. Like it was so foggy at the top, so we didn't get to see the view. Instead we got to see how much wood got chopped down. Looked like a war scene from a movie. Don't go",
-        "user_id": 5,
-        "category_id": 1
-    },
-    {
-        "title": "Marymoor Park and Trail",
-        "content": "I swear to god, I am good at longboarding. But the amount of times I tripped because of how bad roots have torn up the trail in some parts. So angry",
-        "user_id": 6,
-        "category_id": 4
-    }
+  {
+    "title": "Less Snow",
+    "content": "The top of Mt. Si has had most of the snow now melt off. So now the mile up to the top is clear. Still full of powder at the peak though.",
+    "user_id": 1,
+    "category_id": 1
+  },
+  {
+    "title": "Want to play?",
+    "content": "Hoping to get a game going the weekend after next, who is in?",
+    "user_id": 2,
+    "category_id": 2
+  },
+  {
+    "title": "Burke-Gilman trail!",
+    "content": "First time cycling on this trail, it was a wonder. Highly recommend to anyone looking for a new trail to explore.",
+    "user_id": 3,
+    "category_id": 3
+  },
+  {
+    "title": "Space Needle Skate Part",
+    "content": "C-Skate? I don't know for sure the name of the place. But its near the Space Needle and boy was it a fun place to skate around",
+    "user_id": 4,
+    "category_id": 4
+  },
+  {
+    "title": "Mt.Tiger Trail No.2",
+    "content": "Don't go. Like it was so foggy at the top, so we didn't get to see the view. Instead we got to see how much wood got chopped down. Looked like a war scene from a movie. Don't go",
+    "user_id": 5,
+    "category_id": 1
+  },
+  {
+    "title": "Marymoor Park and Trail",
+    "content": "I swear to god, I am good at longboarding. But the amount of times I tripped because of how bad roots have torn up the trail in some parts. So angry",
+    "user_id": 6,
+    "category_id": 4
+  }
 ]
