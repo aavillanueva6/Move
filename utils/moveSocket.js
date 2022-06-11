@@ -8,6 +8,7 @@ function moveSocket(io, sequelize, datetime) {
   io.on('connection', async (socket) => {
     console.log('a user connected');
 
+    // upon user connection, query database to delete chat messages that are past the expiry
     const connectionTime = datetime.create().now();
     const expirationHours = 0.1; // set this to the number of hours before the messages are deleted from the db
     const expirationTime = connectionTime - 1000 * 60 * 60 * expirationHours;
@@ -19,6 +20,7 @@ function moveSocket(io, sequelize, datetime) {
       },
     });
 
+    // query the db to find all chat messages
     const dbMessagesData = await Message.findAll({
       include: [
         {
@@ -30,8 +32,10 @@ function moveSocket(io, sequelize, datetime) {
       nest: true,
     });
 
+    // if there are messages found in the db, loop through each message and emit the message to the chat client
     if (dbMessagesData) {
       dbMessagesData.forEach((element) => {
+        // if the message does not have a user associated with it, assign an anonymous name to the message.
         if (!element.user.username) {
           element.user.username = createAnonUser();
         }
@@ -40,9 +44,9 @@ function moveSocket(io, sequelize, datetime) {
         const sentPage = element.sent_page;
         socket.emit('chat message', msg, userID, sentPage);
       });
-
-      dbMessagesData.forEach;
     }
+
+    // parses the session cookie off of the http request and uses that value to query the database to identify if the user is logged.
     const sessionCookie = socket.handshake.headers.cookie;
     const actual = sessionCookie.split('=')[1].split('.')[0].split('');
     actual.splice(0, 4);
@@ -68,12 +72,11 @@ function moveSocket(io, sequelize, datetime) {
       );
 
       const cookieJsonData = sessionQueryData[0][0].data;
-
       parsedCookieData = JSON.parse(cookieJsonData);
-
       logged_in = parsedCookieData.logged_in;
-
       loggedInUser = parsedCookieData.user_id;
+
+      // if the user is logged in query the database to pull their username
       if (logged_in) {
         const userQueryData = await sequelize.query(
           `SELECT * FROM user WHERE id=${loggedInUser}`,
@@ -94,6 +97,7 @@ function moveSocket(io, sequelize, datetime) {
         userID: socket.userID,
       });
 
+      //set the user's ID to their username if they are logged in, or an anoymous name if they are not logged in
       if (logged_in) {
         // set userID to logged in user's name
         userID = loggedInUserName;
@@ -101,11 +105,11 @@ function moveSocket(io, sequelize, datetime) {
         userID = createAnonUser();
       }
 
-      const socketID = socket.id;
-      const newUser = {
-        socketID,
-        userID,
-      };
+      // const socketID = socket.id;
+      // const newUser = {
+      //   socketID,
+      //   userID,
+      // };
     } catch (err) {
       console.log(err);
     }
@@ -114,6 +118,8 @@ function moveSocket(io, sequelize, datetime) {
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
+
+    // when a client sends a chat, the server adds the userID and then emits the message to all clients.  It also adds the message to the database
     socket.on('chat message', (msg, sentPage) => {
       console.log(`message: ${msg} from: ${userID}`);
       io.emit('chat message', msg, userID, sentPage);
