@@ -12,7 +12,7 @@ https://uwb-move.herokuapp.com/
 * [Deployement](#deployement)
 * [Instillation](#instillation)
 * [Usage](#usage)
-* [Screenshots](#screenshots)
+* [Visuals](#visuals)
 * [Contribution](#contribution)
 * [Tests](#tests)
 * [Questions](#questions)
@@ -23,8 +23,14 @@ To use the application, there are no instillation guidelines, simply go to the d
 ## Usage 
 On the landing page the user will be asked to either sign in or sign up. After they go through the login process they will see a homepage where they can scroll through all posts. There they can click on the add Post to add a Post. In addition, there shall be a menu to the side where they can see all logged in users that they know and can click to start chatting with them online.
 
-## Screenshots
-![A gif of the deployed application](./assets/DELETE%20and%20PUT.gif "A video of the Move website being used. Going through the login/signup process, what the home and profile pages, the chat function, and also how to make, edit, and comment on posts.")
+## Visuals
+![Screenshot of the Move Homepage](./public/assets/DeployedMoveScreenshot.png "Screenshot of the Move Homepage")
+
+![A gif of the deployed application](./public/assets/moveapp.gif "A video of the Move website being used. Going through the login/signup process, what the home and profile pages, the chat function, and also how to make, edit, and comment on posts.")
+
+Link to full resolution video above: https://drive.google.com/file/d/1KeyqPKjgpfFzb2rK8QbbB3481qbrNUzV/view?usp=sharing 
+
+Link to google presentation on this project: https://docs.google.com/presentation/d/1b5_yuQ7dE8EEwDr9jNYeJPQWLTPIh9dyHdrY_mjv_-s/edit?usp=sharing 
 
 ## Contribution
 There are no contribution guidelines for this project
@@ -40,8 +46,7 @@ https://mit-license.org/
 
 ## Questions
 If you have any further questions contact us here:
- - Email niccatania6@gmail.com
- - Email sharmasup565@gmail.com
- - Email simona.snapk@gmail.com
- - Email aavillanueva6@gmail.com
- - GitHub [aavillanueva6](https://github.com/aavillanueva6)
+ - Email niccatania6@gmail.com   GitHub [Niccatania](https://github.com/Niccatania)
+ - Email sharmasup565@gmail.com   GitHub [Supsha878](https://github.com/Supsha878)
+ - Email simona.snapk@gmail.com   GitHub [SimonaSnap](https://github.com/SimonaSnap)
+ - Email aavillanueva6@gmail.com   GitHub [aavillanueva6](https://github.com/aavillanueva6)
