@@ -25,15 +25,17 @@
 
 /* general elements */
   body {
-    margin: 1em;
-    padding-bottom: 3rem;
     font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       Helvetica, Arial, sans-serif;
     color:var(--darkGreen);
     background-image: linear-gradient(var(--darkYellow50), var(--lightYellow50));
   }
   a {
-    color: var(--darkBlue)
+    color: var(--darkBlue);
+
+  }
+  a:hover{
+    text-decoration: none;
   }
   .btnSize {
     width: 190px;
@@ -44,6 +46,10 @@
    color:var(--darkBlue);
    background-color:var(--darkGreen75); 
    border-color: var(--darkBlue);
+  }
+  footer a{
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
 /* chat client elements */
