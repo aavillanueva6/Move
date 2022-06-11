@@ -1,17 +1,35 @@
 {{category.name}}
-
-{{#each posts as |post|}}
-  <div class='row mb-4 post'>
-    <div class='col-md-5'>
-      <h2>
-        <a href='/post/{{post.id}}'>{{post.title}}</a>
-      </h2>
-      <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
+<div class="row">
+  <div class="col-md-8">
+    {{#each posts as |post|}}
+    <div class='row mb-4 post'>
+      <div class='col-md-5'>
+        <h2>
+          <a href='/post/{{post.id}}'>{{post.title}}</a>
+        </h2>
+        <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
+      </div>
+      <div class='col-md-7'>
+        <p>
+          {{post.content}}
+        </p>
+      </div>
     </div>
-    <div class='col-md-7'>
-      <p>
-        {{post.content}}
-      </p>
+    {{/each}}
+  </div>
+
+
+    {{!-- Chat client --}}
+    <div class="col-md-4">
+    <h3> Chat with fellow outdoor enthusiasts!</h3>
+    <div class="socket-container row" id="messageContainer">
+      <ul id="socketMessages" class="col"></ul>
+    </div>
+    <div class="row">
+      <form id="socketForm" class="col" action="">
+        <input id="socketText" autocomplete="off"/>
+        <button>Send</button>
+      </form>
     </div>
   </div>
-{{/each}}
+</div>

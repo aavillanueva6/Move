@@ -1,18 +1,47 @@
-{{!-- Looping through all of our posts and displaying them on the homepage --}}
-{{#each posts as |post|}}
-  <div class='row mb-4 post'>
-    <div class='col-md-5'>
-      <h2>
-        <a href='/post/{{post.id}}'>{{post.title}}</a>
-      </h2>
-      <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
+<div class="row">
+  <div class="col-md-8">
+    {{!-- Looping through all of our posts and displaying them on the homepage --}}
+    {{#each posts as |post|}}
+    <div class='row post mr-1 mb-1'>
+      <div class="card col homepagePostCard">
+        <div class="row align-items-center">
+          <div class='col-md-5'>
+            <h2>
+              <a href='/post/{{post.id}}'>{{post.title}}</a>
+            </h2>
+            <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
+            {{#if post.comments}}
+            <a href='/post/{{post.id}}'>Click here to see and add comments</a>
+            {{else}}
+            <a href='/post/{{post.id}}'>Click here to be the first to comment on this post</a>
+            {{/if}}
+          </div>
+          <div class='col-md-7'>
+            <p>
+              {{post.content}}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class='col-md-7'>
-      <p>
-        {{post.content}}
-      </p>
+    {{/each}}
+  </div>
+
+  {{!-- The if statement below will conditionally display the chat client.  If the chat client is displayed when the user is not logged in, they will be assigned a random username --}}
+  {{!-- {{#if logged_in}} --}}
+  {{!-- Chat client --}}
+
+  <div class="col-md-4">
+    <h3> Chat with fellow outdoor enthusiasts!</h3>
+    <div class="socket-container row" id="messageContainer">
+      <ul id="socketMessages" class="col"></ul>
+    </div>
+    <div class="row">
+      <form id="socketForm" class="col" action="">
+        <input id="socketText" autocomplete="off"/>
+        <button>Send</button>
+      </form>
     </div>
   </div>
-{{/each}}
-
-<script src='./js/login.js'></script>
+  {{!-- {{/if}} --}}
+</div>
