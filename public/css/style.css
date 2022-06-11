@@ -1,26 +1,25 @@
 /* defines custom colors */
 :root {
   --lightGreen: #a2e064;
-  --lightGreen75: #7DD823BF;
-  --lightGreen50: #7DD82380;
-  --lightGreen25: #7DD82340;
-  --darkGreen: #0F5940;
-  --darkGreen75: #0F5940BF;
-  --darkGreen50: #0F594080;
-  --darkGreen25: #0F594040;
-  --darkYellow: #FFB611;
-  --darkYellow75: #FFB611BF;
-  --darkYellow50: #FFB61180;
-  --darkYellow25: #FFB61140;
-  --lightYellow: #FFF7D4;
-  --lightYellow75: #FFF7D4BF;
-  --lightYellow50: #FFF7D480;
-  --lightYellow25: #FFF7D440;
+  --lightGreen75: #7dd823bf;
+  --lightGreen50: #7dd82380;
+  --lightGreen25: #7dd82340;
+  --darkGreen: #0f5940;
+  --darkGreen75: #0f5940bf;
+  --darkGreen50: #0f594080;
+  --darkGreen25: #0f594040;
+  --darkYellow: #ffb611;
+  --darkYellow75: #ffb611bf;
+  --darkYellow50: #ffb61180;
+  --darkYellow25: #ffb61140;
+  --lightYellow: #fff7d4;
+  --lightYellow75: #fff7d4bf;
+  --lightYellow50: #fff7d480;
+  --lightYellow25: #fff7d440;
   --darkBlue: #080741;
-  --darkBlue75: #080741BF;
+  --darkBlue75: #080741bf;
   --darkBlue50: #08074180;
   --darkBlue25: #08074140;
-
 }
 
 /* general elements */
@@ -34,7 +33,7 @@ body {
 }
 
 a {
-  color: var(--darkBlue)
+  color: var(--darkBlue);
 }
 
 h2 {
@@ -53,7 +52,7 @@ p {
 .btnSize {
   width: 190px;
   height: 50px;
-  margin: 15px
+  margin: 15px;
 }
 
 .moveFormSubmitBtns {
@@ -85,7 +84,7 @@ p {
   outline: none;
 }
 
-#socketForm>button {
+#socketForm > button {
   background: var(--darkGreen);
   border: none;
   padding: 0 1rem;
@@ -97,7 +96,7 @@ p {
 
 #socketText {
   background-color: var(--lightYellow50);
-  color: var(--darkGreen)
+  color: var(--darkGreen);
 }
 
 #socketMessages {
@@ -106,18 +105,18 @@ p {
   padding: 0;
 }
 
-#socketMessages>li {
+#socketMessages > li {
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
-  color: var(--darkGreen)
+  color: var(--darkGreen);
 }
 
-#socketMessages>li:nth-child(odd) {
+#socketMessages > li:nth-child(odd) {
   background: var(--lightYellow);
 }
 
-#socketMessages>li:nth-child(even) {
+#socketMessages > li:nth-child(even) {
   background: var(--lightGreen50);
 }
 
@@ -136,17 +135,14 @@ p {
 }
 
 .socket-container {
-
   height: 400px;
   border: 1px solid var(--darkGreen50);
   /* font: 16px/26px Georgia, Garamond, Serif; */
   font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif;
-  ;
   overflow: auto;
   background-color: var(--lightYellow75);
 }
-
 
 /* profile page elements */
 #profileCreatePostBtn {
@@ -160,7 +156,7 @@ p {
 }
 
 #profileMainCard {
-  background-color: var(--darkYellow25)
+  background-color: var(--darkYellow25);
 }
 
 /* new post page elements */
@@ -170,7 +166,7 @@ p {
 
 #newPostCard .moveForm {
   background-color: var(--darkYellow50);
-  color: var(--darkGreen)
+  color: var(--darkGreen);
 }
 
 #post-category:focus {
@@ -185,20 +181,20 @@ p {
 
 .loginSignupCard .moveForm {
   background-color: var(--darkYellow50);
-  color: var(--darkGreen)
+  color: var(--darkGreen);
 }
 
 /* view-post elements */
 .new-comment-form .moveForm {
   background-color: var(--darkYellow50);
-  color: var(--darkGreen)
+  color: var(--darkGreen);
 }
 
-#commentBucket>div:nth-child(odd) {
+#commentBucket > div:nth-child(odd) {
   background: var(--darkYellow25);
 }
 
-#commentBucket>div:nth-child(even) {
+#commentBucket > div:nth-child(even) {
   background: var(--darkYellow50);
 }
 
