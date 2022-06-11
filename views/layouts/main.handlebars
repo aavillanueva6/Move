@@ -1,129 +1,162 @@
 <html lang='en'>
 
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>Move</title>
-    <link rel="icon" type="image/x-icon" href="/./assets/move.png">
-    <link
-      rel='stylesheet'
-      href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-    />
-    <link rel='stylesheet' href='./css/style.css' />
-  </head>
-  <body >
-    <nav class='navbar' style="background-color: #FFB611;">
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Move</title>
+  <link rel="icon" type="image/x-icon" href="/./assets/move.png">
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+  <nav class='navbar' style="background-color: #FFB611;">
+    <a class='navbar-brand' href='/'>
+      {{!-- Navbar icon --}}
+      <img src='/./assets/move.png' width='54px' style="padding: 5px;" class='d-inline-block align-top' alt='move icon'
+        href='/' />
+      {{!-- "move" text that links back to the hompage --}}
       <a class='navbar-brand' href='/'>
-        {{!-- Navbar icon --}}
-        <img
-          src='/./assets/move.png'
-          width='35px'
-          class='d-inline-block align-top'
-          alt='move icon'
-          href='/'
-        />
-
-         <a class='navbar-brand' href='/'> move</a>
+        <h2>MOVE</h2>
       </a>
-        {{!-- If a user is not logged in then render login and signup links in the navbar --}}
-        {{#unless logged_in}}
-        <a class='navbar-brand' href='/login'>login</a>
-        <a class='navbar-brand' href='/signup'>signup</a>
-        {{/unless}}
-        {{!-- If a user is logged in then render profile and logout links in the navbar --}}
-        {{#if logged_in}}
-      <a class='navbar-brand' href='/profile'>profile</a>
-      <a class='navbar-brand' id='logout'>logout</a>
-      <script src='/js/logout.js'></script>
+    </a>
+    {{!-- If a user is not logged in then render login and signup links in the navbar --}}
+    {{#unless logged_in}}
+    <a class='navbar-brand' href='/login'>Login</a>
+    <a class='navbar-brand' href='/signup'>Signup</a>
+    {{/unless}}
+    {{!-- If a user is logged in then render profile and logout links in the navbar --}}
+    {{#if logged_in}}
+    <a class='navbar-brand' href='/profile'>Profile</a>
+    <a class='navbar-brand' id='logout' href="/">Logout</a>
+    <script src='/js/logout.js'></script>
     {{/if}}
-    {{!-- "move" text that links back to the hompage --}}
-       
-      </nav>
-    </div>
-    <div class='collapse navbar-collapse' id='navbarNav'>
-    </div>
-{{!-- The body handlebar will render our homepage --}}
-    <main class='container container-fluid mt-5'>
-     
-      {{{body}}}
-    
-    </main>
 
-    <script
-      src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
-    ></script>
-    {{!-- Socket script --}}
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const messageContainer = document.getElementById('messageContainer');
+  </nav>
+  </div>
+  <div class='collapse navbar-collapse' id='navbarNav'>
+  </div>
 
-      if (messageContainer) {
-        // connect to socket
-        const socket = io();
+  {{!-- The body handlebar will render the templates --}}
+  <main class='container container-fluid mt-5'>
 
-        socket.on('session', ({ sessionID, userID, username }) => {
-          // attach the session ID to the next reconnection attempts
-          socket.auth = { sessionID };
+    {{{body}}}
 
-          // save the ID of the user
-          socket.userID = userID;
-        });
+  </main>
+  
+   <footer class="footer mt-auto py-3">
+      <div class="container">
+        <div class="row justify-content-center">
+        <a class="text-muted text-center text-decoration-none" href="https://github.com/aavillanueva6/Move">move &copy; 2022</a>
+      </div>
+      </div>
+    </footer>
 
-        const socketMessages = document.getElementById('socketMessages');
-        const socketForm = document.getElementById('socketForm');
-        const socketText = document.getElementById('socketText');
+  {{!-- bootstrap framework scripts --}}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  {{!-- Socket script --}}
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const messageContainer = document.getElementById('messageContainer');
 
-        const userID = socket.id;
+    if (messageContainer)
+    {
+      // connect to socket
+      const socket = io();
 
-        function updateScroll() {
-          messageContainer.scrollTop = messageContainer.scrollHeight;
-        }
+      socket.on('session', ({ sessionID, userID, username }) =>
+      {
+        // attach the session ID to the next reconnection attempts
+        socket.auth = { sessionID };
 
-        socketForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          if (socketText.value) {
-            const path = document.location.pathname;
-            let sentPage = '';
-            if (path === '/') {
-              sentPage = 'home';
-            } else {
-              sentPage = path.split('/')[1];
-            }
-            // console.log('sentPage ' + sentPage);
+        // save the ID of the user
+        socket.userID = userID;
+      });
 
-            socket.emit('chat message', socketText.value, sentPage);
-            socketText.value = '';
-          }
-        });
+      const socketMessages = document.getElementById('socketMessages');
+      const socketForm = document.getElementById('socketForm');
+      const socketText = document.getElementById('socketText');
 
-        socket.on('chat message', async function (msg, userID, sentPage) {
-          const path = document.location.pathname;
-          const pathArr = path.split('/');
-          let thisPage = '';
-          if (path === '/') {
-            thisPage = 'home';
-          } else {
-            thisPage = path.split('/')[1];
-          }
-          // console.log('thisPage ' + thisPage);
-          // console.log('sentPage (in rec): ' + sentPage);
+      const userID = socket.id;
 
-          if (thisPage === sentPage) {
-            const socketID = socket.id;
-            var row = document.createElement('li');
-            var message = document.createElement('span');
-            message.classList.add('socket-message');
-            var user = document.createElement('span');
-            user.classList.add('socket-user');
-            message.textContent = msg;
-            user.textContent = `(${userID})`;
-            socketMessages.appendChild(row);
-            row.appendChild(message);
-            row.appendChild(user);
-            updateScroll();
-          }
-        });
+      function updateScroll()
+      {
+        messageContainer.scrollTop = messageContainer.scrollHeight;
       }
-    </script>
-  </body>
+
+      socketForm.addEventListener('submit', function (e)
+      {
+        e.preventDefault();
+        if (socketText.value)
+        {
+          const path = document.location.pathname;
+          let sentPage = '';
+          if (path === '/')
+          {
+            sentPage = 'home';
+          } else if (path.split('/').length > 2)
+          {
+            sentPage = path.split('/')[1] + '_' + path.split('/')[2];;
+          } else
+          {
+            sentPage = path.split('/')[1]
+          }
+          // console.log('sentPage ' + sentPage);
+
+          socket.emit('chat message', socketText.value, sentPage);
+          socketText.value = '';
+        }
+      });
+
+      socket.on('chat message', async function (msg, userID, sentPage)
+      {
+        const path = document.location.pathname;
+        const pathArr = path.split('/');
+        let thisPage = '';
+        if (path === '/')
+        {
+          thisPage = 'home';
+        } else if (path.split('/').length > 2)
+        {
+          thisPage = path.split('/')[1] + '_' + path.split('/')[2];
+        } else
+        {
+          thisPage = path.split('/')[1]
+        }
+        console.log('thisPage ' + thisPage);
+        console.log('sentPage (in rec): ' + sentPage);
+
+        if (thisPage === sentPage)
+        {
+          const socketID = socket.id;
+          var row = document.createElement('li');
+          var message = document.createElement('span');
+          message.classList.add('socket-message');
+          var user = document.createElement('span');
+          user.classList.add('socket-user');
+          message.textContent = msg;
+          user.textContent = `(${userID})`;
+          socketMessages.appendChild(row);
+          row.appendChild(message);
+          row.appendChild(user);
+          updateScroll();
+        }
+      });
+    }
+  </script>
+</body>
+
 </html>

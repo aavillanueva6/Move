@@ -2,7 +2,7 @@ async function commentFormHandler(event) {
   event.preventDefault();
 
   const post_id = window.location.pathname.split('/')[2];
-  console.log(post_id);
+  // console.log(post_id);
   const content = document.querySelector('#comment-name').value.trim();
 
   if (content && post_id) {
@@ -29,4 +29,4 @@ document
   .querySelector('.new-comment-form')
   .addEventListener('submit', commentFormHandler);
 
-console.log(window.location.pathname.split('/')[2]);
+// console.log(window.location.pathname.split('/')[2]);

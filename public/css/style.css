@@ -1,36 +1,100 @@
-body {
-  margin: 1em;
-  padding-bottom: 3rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Helvetica, Arial, sans-serif;
+/* defines custom colors */
+:root {
+  --lightGreen: #cdf1a8b5;
+  --lightGreen75: #7dd823bf;
+  --lightGreen50: #7dd82380;
+  --lightGreen25: #7dd82340;
+  --darkGreen: #0f5940;
+  --darkGreen75: #0f5940bf;
+  --darkGreen50: #0f594080;
+  --darkGreen25: #0f594040;
+  --darkYellow: #ffb611;
+  --darkYellow75: #ffb611bf;
+  --darkYellow50: #ffb61180;
+  --darkYellow25: #ffb61140;
+  --lightYellow: #fff7d4;
+  --lightYellow75: #fff7d4bf;
+  --lightYellow50: #fff7d480;
+  --lightYellow25: #fff7d440;
+  --darkBlue: #080741;
+  --darkBlue75: #080741bf;
+  --darkBlue50: #08074180;
+  --darkBlue25: #08074140;
 }
+
+/* general elements */
+body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  color: var(--darkGreen);
+  /* background-image: linear-gradient(var(--darkYellow50), var(--lightYellow50)); */
+}
+
+a {
+  color: var(--darkBlue);
+}
+
+h2 {
+  font-size: 16pt;
+  font-weight: 700;
+  padding-top: 10pt;
+}
+
+h4 {
+  padding-top: 10pt;
+}
+
+p {
+  font-size: 12pt;
+  line-height: 1.6;
+  padding-top: 10pt;
+  padding-bottom: 10pt;
+}
+
+.btnSize {
+  width: 190px;
+  height: 50px;
+  margin: 15px;
+}
+
+.moveFormSubmitBtns {
+  color: var(--darkBlue);
+  font-weight: 700;
+  border-color: var(--darkBlue);
+  border-width: 2pt;
+  border-radius: 5pt;
+}
+
+/* chat client elements */
 #socketForm {
-  background: rgba(0, 0, 0, 0.15);
-  padding: 0.25rem;
-  display: flex;
-  height: 3rem;
-  width: 500px;
+  background: var(--darkGreen50);
   box-sizing: border-box;
   backdrop-filter: blur(10px);
 }
+
 #socketText {
   border: none;
-  padding: 0 1rem;
-  flex-grow: 1;
   border-radius: 2rem;
-  margin: 0.25rem;
+  height: 2rem;
 }
+
 #socketText:focus {
   outline: none;
 }
-#socketForm > button {
-  background: #333;
+
+#socketButton {
+  background: var(--darkGreen);
   border: none;
-  padding: 0 1rem;
-  margin: 0.25rem;
   border-radius: 3px;
+  flex-grow: 0;
   outline: none;
-  color: #fff;
+  color: white;
+  height: 2rem;
+}
+
+#socketText {
+  background-color: var(--lightYellow75);
+  color: var(--darkGreen);
 }
 
 #socketMessages {
@@ -38,36 +102,140 @@ body {
   margin: 0;
   padding: 0;
 }
+
 #socketMessages > li {
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
+  color: var(--darkGreen);
 }
+
 #socketMessages > li:nth-child(odd) {
-  background: #efefef;
+  background: var(--lightYellow75);
 }
+
+#socketMessages > li:nth-child(even) {
+  background: var(--lightGreen50);
+}
+
 .socket-message {
   margin-right: 1em;
-  width: 295px;
 }
+
 .socket-user {
-  width: 130px;
+  width: 90px;
   overflow-wrap: anywhere;
-  font-size: smaller;
+  font-size: 0.7rem;
   font-weight: lighter;
   font-style: italic;
   text-align: right;
 }
-.socket-container {
 
-  height: 250px;
-  width: 498px;
-  border: 1px solid #ccc;
-  font: 16px/26px Georgia, Garamond, Serif;
+.socket-container {
+  height: 400px;
+  border: 1px solid var(--darkGreen50);
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
   overflow: auto;
+  background-color: var(--lightYellow75);
 }
-.btnSize {
-  width: 190px;
-  height: 50px;
-  margin:15px
+
+/* profile page elements */
+#profileCreatePostBtn {
+  background-color: var(--darkBlue);
+  color: white;
+  border-color: var(--darkBlue);
+  margin: 2%;
+}
+
+#profileCatNav {
+  background-color: var(--darkYellow75);
+  border: var(--darkBlue);
+  border-width: 0.1pt;
+  border-style: solid;
+}
+
+#profileMainCard {
+  /* background-color: var(--darkYellow25); */
+  border: var(--darkBlue);
+  border-width: 0.1pt;
+  border-style: solid;
+}
+
+/* new post page elements */
+#newPostCard {
+  border-radius: 15pt;
+  border: 3pt solid --darkBlue;
+}
+
+#newPostCard .moveForm {
+  background-color: var(--lightGreen);
+  color: var(--darkGreen);
+  border-radius: 5pt;
+}
+
+#post-category:focus {
+  border-color: var(--darkGreen);
+  box-shadow: 0 0 0 0.2rem var(--darkGreen25);
+}
+
+/* login signup elements */
+.loginSignupCard {
+  border: var(--darkBlue);
+  border-width: 0.1pt;
+  border-style: solid;
+  border-radius: 15pt;
+}
+
+.loginSignupCard h2 {
+  padding-left: 8%;
+  font-size: 18pt;
+  padding-bottom: 10pt;
+}
+
+.loginSignupCard .moveForm {
+  background-color: var(--lightYellow);
+  color: var(--darkBlue);
+  border-radius: 5pt;
+}
+
+/* view-post elements */
+.new-comment-form .moveForm {
+  border: var(--darkBlue);
+  border-width: 0.1pt;
+  border-style: solid;
+  border-radius: 15pt;
+  color: var(--darkGreen);
+  background-color: var(--lightYellow);
+  margin: 10pt;
+}
+
+#commentBucket > div:nth-child(odd) {
+  border: var(--darkBlue);
+  border-width: 1pt;
+  border-style: solid;
+  border-radius: 15pt;
+  margin-bottom: 15pt;
+}
+
+#commentBucket > div:nth-child(even) {
+  border: var(--darkBlue);
+  border-width: 1pt;
+  border-style: solid;
+  border-radius: 15pt;
+  margin-bottom: 15pt;
+  background-color: var(--lightYellow);
+}
+
+.no-border {
+  border-width: 0.1pt;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+/* homepage elements */
+.homepagePostCard {
+  background-color: rgba(0, 0, 0, 0);
+  border: 3pt solid --darkBlue;
+  border-radius: 15pt;
+  margin-bottom: 15pt;
 }
