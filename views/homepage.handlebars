@@ -11,7 +11,8 @@
             </h2>
             <p>Created by {{post.user.username}} on {{format_date post.date_created}}</p>
             {{#if post.comments}}
-            <a href='/post/{{post.id}}'>Click here to see and add comments</a>
+            <a href='/post/{{post.id}}'><img src="./assets/Group 3comments.png" width="55px"
+                style="padding-bottom:10px;"></a>
             {{else}}
             <a href='/post/{{post.id}}'>Click here to be the first to comment on this post</a>
             {{/if}}
@@ -27,7 +28,8 @@
     {{/each}}
   </div>
 
-  {{!-- The if statement below will conditionally display the chat client.  If the chat client is displayed when the user is not logged in, they will be assigned a random username --}}
+  {{!-- The if statement below will conditionally display the chat client. If the chat client is displayed when the user
+  is not logged in, they will be assigned a random username --}}
   {{!-- {{#if logged_in}} --}}
   {{!-- Chat client --}}
 
@@ -38,7 +40,7 @@
     </div>
     <div class="row">
       <form id="socketForm" class="col" action="">
-        <input id="socketText" autocomplete="off"/>
+        <input id="socketText" autocomplete="off" />
         <button>Send</button>
       </form>
     </div>

@@ -1,176 +1,211 @@
 /* defines custom colors */
 :root {
-  --lightGreen:#7DD823;
-  --lightGreen75:#7DD823BF;
-  --lightGreen50:#7DD82380;
-  --lightGreen25:#7DD82340;
-  --darkGreen:#0F5940;
-  --darkGreen75:#0F5940BF;
-  --darkGreen50:#0F594080;
-  --darkGreen25:#0F594040;
-  --darkYellow:#FFB611;
-  --darkYellow75:#FFB611BF;
-  --darkYellow50:#FFB61180;
-  --darkYellow25:#FFB61140;
-  --lightYellow:#FFF7D4;
-  --lightYellow75:#FFF7D4BF;
-  --lightYellow50:#FFF7D480;
-  --lightYellow25:#FFF7D440;
-  --darkBlue:#080741;
-  --darkBlue75:#080741BF;
-  --darkBlue50:#08074180;
-  --darkBlue25:#08074140;
+  --lightGreen: #a2e064;
+  --lightGreen75: #7DD823BF;
+  --lightGreen50: #7DD82380;
+  --lightGreen25: #7DD82340;
+  --darkGreen: #0F5940;
+  --darkGreen75: #0F5940BF;
+  --darkGreen50: #0F594080;
+  --darkGreen25: #0F594040;
+  --darkYellow: #FFB611;
+  --darkYellow75: #FFB611BF;
+  --darkYellow50: #FFB61180;
+  --darkYellow25: #FFB61140;
+  --lightYellow: #FFF7D4;
+  --lightYellow75: #FFF7D4BF;
+  --lightYellow50: #FFF7D480;
+  --lightYellow25: #FFF7D440;
+  --darkBlue: #080741;
+  --darkBlue75: #080741BF;
+  --darkBlue50: #08074180;
+  --darkBlue25: #08074140;
 
 }
 
 /* general elements */
-  body {
-    margin: 1em;
-    padding-bottom: 3rem;
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Helvetica, Arial, sans-serif;
-    color:var(--darkGreen);
-    background-image: linear-gradient(var(--darkYellow50), var(--lightYellow50));
-  }
-  a {
-    color: var(--darkBlue)
-  }
-  .btnSize {
-    width: 190px;
-    height: 50px;
-    margin:15px
-  }
-  .moveFormSubmitBtns{
-   color:var(--darkBlue);
-   background-color:var(--darkGreen75); 
-   border-color: var(--darkBlue);
-  }
+body {
+  margin: 1em;
+  padding-bottom: 3rem;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  color: var(--darkGreen);
+  /* background-image: linear-gradient(var(--darkYellow50), var(--lightYellow50)); */
+}
+
+a {
+  color: var(--darkBlue)
+}
+
+h2 {
+  font-size: 16pt;
+  font-weight: 700;
+  padding-top: 10pt;
+}
+
+p {
+  font-size: 12pt;
+  line-height: 1.6;
+  padding-top: 10pt;
+  padding-bottom: 10pt;
+}
+
+.btnSize {
+  width: 190px;
+  height: 50px;
+  margin: 15px
+}
+
+.moveFormSubmitBtns {
+  color: var(--darkBlue);
+  background-color: var(--darkGreen75);
+  border-color: var(--darkBlue);
+}
 
 /* chat client elements */
-  #socketForm {
-    background: var(--darkGreen50);
-    padding: 0.25rem;
-    display: flex;
-    height: 3rem;
-    /* width: 300px; */
-    box-sizing: border-box;
-    backdrop-filter: blur(10px);
-  }
-  #socketText {
-    border: none;
-    padding: 0 1rem;
-    flex-grow: 1;
-    border-radius: 2rem;
-    margin: 0.25rem;
-  }
-  #socketText:focus {
-    outline: none;
-  }
-  #socketForm > button {
-    background: var(--darkGreen);
-    border: none;
-    padding: 0 1rem;
-    margin: 0.25rem;
-    border-radius: 3px;
-    outline: none;
-    color: var(--darkYellow);
-  }
-  #socketText{
-    background-color: var(--lightYellow75);
-    color: var(--darkGreen)
-  }
+#socketForm {
+  background: var(--darkGreen50);
+  padding: 0.25rem;
+  display: flex;
+  height: 3rem;
+  /* width: 300px; */
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+}
 
-  #socketMessages {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  #socketMessages > li {
-    padding: 0.5rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    color: var(--darkGreen)
-  }
-  #socketMessages > li:nth-child(odd) {
-    background: var(--lightYellow75);
-  }
-  #socketMessages > li:nth-child(even) {
-    background: var(--darkYellow75);
-  }
+#socketText {
+  border: none;
+  padding: 0 1rem;
+  flex-grow: 1;
+  border-radius: 2rem;
+  margin: 0.25rem;
+}
 
-  .socket-message {
-    margin-right: 1em;
-    /* width: 175px; */
-  }
-  .socket-user {
-    width: 90px;
-    overflow-wrap: anywhere;
-    font-size:0.7rem;
-    font-weight: lighter;
-    font-style: italic;
-    text-align: right;
-  }
-  .socket-container {
+#socketText:focus {
+  outline: none;
+}
 
-    height: 400px;
-    border: 1px solid var(--darkGreen50);
-    /* font: 16px/26px Georgia, Garamond, Serif; */
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Helvetica, Arial, sans-serif;;
-    overflow: auto;
-    background-color: var(--lightYellow75);
-  }
+#socketForm>button {
+  background: var(--darkGreen);
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: white;
+}
+
+#socketText {
+  background-color: var(--lightYellow50);
+  color: var(--darkGreen)
+}
+
+#socketMessages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#socketMessages>li {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--darkGreen)
+}
+
+#socketMessages>li:nth-child(odd) {
+  background: var(--lightYellow);
+}
+
+#socketMessages>li:nth-child(even) {
+  background: var(--lightGreen50);
+}
+
+.socket-message {
+  margin-right: 1em;
+  /* width: 175px; */
+}
+
+.socket-user {
+  width: 90px;
+  overflow-wrap: anywhere;
+  font-size: 0.7rem;
+  font-weight: lighter;
+  font-style: italic;
+  text-align: right;
+}
+
+.socket-container {
+
+  height: 400px;
+  border: 1px solid var(--darkGreen50);
+  /* font: 16px/26px Georgia, Garamond, Serif; */
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  ;
+  overflow: auto;
+  background-color: var(--lightYellow75);
+}
 
 
 /* profile page elements */
-  #profileCreatePostBtn{
-    background-color: var(--darkBlue);
-    color:var(--darkYellow);
-    border-color: var(--darkBlue);
-  }
-  #profileCatNav{
-    background-color: var(--darkYellow75);
-  }
-  #profileMainCard{
-    background-color: var(--darkYellow25)
-  }
+#profileCreatePostBtn {
+  background-color: var(--darkBlue);
+  color: var(--darkYellow);
+  border-color: var(--darkBlue);
+}
+
+#profileCatNav {
+  background-color: var(--darkYellow75);
+}
+
+#profileMainCard {
+  background-color: var(--darkYellow25)
+}
 
 /* new post page elements */
-  #newPostCard{
-    background-color: var(--lightYellow75);
-  }
-  #newPostCard .moveForm{
-    background-color: var(--darkYellow50);
-    color: var(--darkGreen)
-  }
-  #post-category:focus{
-    border-color: var(--darkGreen);
-    box-shadow: 0 0 0 0.2rem var(--darkGreen25);
-  }
+#newPostCard {
+  background-color: var(--lightYellow75);
+}
+
+#newPostCard .moveForm {
+  background-color: var(--darkYellow50);
+  color: var(--darkGreen)
+}
+
+#post-category:focus {
+  border-color: var(--darkGreen);
+  box-shadow: 0 0 0 0.2rem var(--darkGreen25);
+}
 
 /* login signup elements */
-  .loginSignupCard{
-    background-color: var(--lightYellow75);
-  }
-  .loginSignupCard .moveForm{
-    background-color: var(--darkYellow50);
-    color: var(--darkGreen)
-  }
-  
+.loginSignupCard {
+  background-color: var(--lightYellow75);
+}
+
+.loginSignupCard .moveForm {
+  background-color: var(--darkYellow50);
+  color: var(--darkGreen)
+}
+
 /* view-post elements */
-  .new-comment-form .moveForm {
-    background-color: var(--darkYellow50);
-    color: var(--darkGreen)
-  }
-  #commentBucket > div:nth-child(odd) {
-    background: var(--darkYellow25);
-  }
-  #commentBucket > div:nth-child(even) {
-    background: var(--darkYellow50);
-  }
+.new-comment-form .moveForm {
+  background-color: var(--darkYellow50);
+  color: var(--darkGreen)
+}
+
+#commentBucket>div:nth-child(odd) {
+  background: var(--darkYellow25);
+}
+
+#commentBucket>div:nth-child(even) {
+  background: var(--darkYellow50);
+}
 
 /* homepage elements */
-  .homepagePostCard{
-    background-color: rgba(0,0,0,0);
-    border-color: var(--darkYellow);
-  }
+.homepagePostCard {
+  background-color: rgba(0, 0, 0, 0);
+  border: 3pt solid --darkBlue;
+  border-radius: 15pt;
+  margin-bottom: 15pt;
+}
