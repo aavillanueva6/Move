@@ -40,8 +40,13 @@ const newPostHandler = async (event) => {
 const updatePostHandler = async (event) => {
   event.preventDefault();
 
+  const categories = document
+    .querySelector('#category')
+    .getElementsByTagName('option');
+
   const postId = event.target.dataset.id;
   const title = document.querySelector('#post-title').value.trim();
+  const content = document.querySelector('#post-content').value.trim();
 
   const category_name = document.querySelector('#post-category').value;
   let category_id;

@@ -1,7 +1,6 @@
 {{!-- This is the single post view,  where a user is sent when they click on a posts title --}}
 <div class="card">
   <div class="container" style="background-color: #FFF7D4;">
-
     <div class="text-center">
       <div class='row mb-4 post'>
         <div class='col-md-5'>
@@ -20,8 +19,9 @@
     </div>
   </div>
 </div>
+
 {{#if logged_in}}
-  {{!-- If a user is logged in then they get access to a comment form --}}
+{{!-- If a user is logged in then they get access to a comment form --}}
 <div class="card">
   <div class="container" style="background-color: #FFF7D4;">
     <div class="col-sm">
@@ -43,8 +43,7 @@
 {{!-- only render comments section if they exist --}}
 <h4> User comments</h4>
 <div id="commentBucket">
-  {{#each comments as |comment|}}
-  
+  {{#each comments as |comment|}}  
   <div class="card">
     <div class="card-body">
       <div class="text-center">
