@@ -1,42 +1,54 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-    <div class='card loginSignupCard'>
-      <div class='card-body'>
-        <div class='row'>
-          <h2>signup</h2>
-        </div>
-        <div class='row'>
-          <div class="col">
-            <form class='form signup-form' style="width=100%">
-              <div class="container">
-                <div class='form-group'>
-                  <label for='name-signup'>name:</label>
-                  <input class='form-input col moveForm' type='text' id='name-signup' />
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='col-md-6'>
+      <div class='card loginSignupCard'>
+        <div class='card-body'>
+          <div class='row'>
+            <h2>signup</h2>
+          </div>
+          <div class='row'>
+            <div class='col'>
+              <form class='form signup-form' style='width=100%'>
+                <div class='container'>
+                  <div class='form-group'>
+                    <label for='name-signup'>name:</label>
+                    <input
+                      class='form-input col moveForm'
+                      type='text'
+                      id='name-signup'
+                    />
+                  </div>
+                  <div class='form-group'>
+                    <label for='email-signup'>email:</label>
+                    <input
+                      class='form-input col moveForm'
+                      type='text'
+                      id='email-signup'
+                    />
+                  </div>
+                  <div class='form-group'>
+                    <label for='password-signup'>password:</label>
+                    <input
+                      class='form-input col moveForm'
+                      type='password'
+                      id='password-signup'
+                    />
+                  </div>
+                  <div class='form-group'>
+                    <button
+                      class='btn moveFormSubmitBtns'
+                      type='submit'
+                      class='signupBtn'
+                    >signup</button>
+                  </div>
                 </div>
-                <div class='form-group'>
-                  <label for='email-signup'>email:</label>
-                  <input class='form-input col moveForm' type='text' id='email-signup' />
-                </div>
-                <div class='form-group'>
-                  <label for='password-signup'>password:</label>
-                  <input class='form-input col moveForm' type='password' id='password-signup' />
-                </div>
-                <div class='form-group'>
-                  <button
-                    class='btn moveFormSubmitBtns'
-                    type='submit'
-                    class='signupBtn'
-                  >signup</button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-  </div>  
+  </div>
 </div>
 
 <script src='/js/signup.js'></script>
