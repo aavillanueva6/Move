@@ -223,7 +223,13 @@ p {
   border-width: 1pt;
   border-style: solid;
   border-radius: 15pt;
+  margin-bottom: 15pt;
   background-color: var(--lightYellow);
+}
+
+.no-border {
+  border-width: 0.1pt;
+  border-color: rgba(0, 0, 0, 0);
 }
 
 /* homepage elements */
